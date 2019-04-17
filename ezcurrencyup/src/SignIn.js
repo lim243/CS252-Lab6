@@ -22,6 +22,24 @@ class SignIn extends Component {
             <h2>SignIn</h2>
 
             <label>Email</label>
+
+            <input
+              autoFocus
+              type="email"
+              name="email"
+              value={this.state.email}
+            />
+
+            <label>Password</label>
+
+            <input
+              autoFocus
+              type="email"
+              name="email"
+              value={this.state.password}
+            />
+
+            <button type="submit">Sign In</button>
           </form>
         </main>
       </div>
