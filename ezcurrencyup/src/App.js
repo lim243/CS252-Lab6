@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 import Main from "./Main";
+import SignIn from "./SignIn";
 
 class App extends Component {
   constructor() {
@@ -11,7 +12,12 @@ class App extends Component {
     };
   }
   render() {
-    return <Main name={this.state.user} />;
+    return (
+      <div>
+        <SignIn />
+        {/* <Main name={this.state.user} /> */}
+      </div>
+    );
   }
 }
 

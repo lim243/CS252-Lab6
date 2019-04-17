@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Titlebar from "./Titlebar";
 
 class Main extends Component {
   constructor() {
@@ -22,8 +23,12 @@ class Main extends Component {
   render() {
     return (
       <div>
+        {/* Title bar */}
+        <Titlebar />
+
+        {/* For the main input form area */}
         <div style={styles.title}>Hello, {this.props.name}</div>
-        <form onSubmit={this.handleSubmit}>
+        <form style={styles.form} onSubmit={this.handleSubmit}>
           <label>
             Input:
             <input type="text" name="inputField" onChange={this.handleChange} />
@@ -44,6 +49,21 @@ const styles = {
     textTransform: "uppercase",
     lineHeight: "80px",
     fontSize: "2rem"
+  },
+
+  form: {
+    fontFamily: "Gentium Book Basic",
+    // -webkit-box-sizing: border-box;
+    boxSizing: "border-box",
+    width: "80%",
+    padding: "10px",
+    fontSize: "24px",
+    backgroundClip: "padding-box",
+    borderColor: "rgba(0,0,0,0.25)",
+    borderRadius: "5px",
+    lineHeight: "20px",
+    border: "1px solid #d1d5da",
+    margin: "0 auto"
   }
 };
 
