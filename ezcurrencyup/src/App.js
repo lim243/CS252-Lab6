@@ -11,14 +11,7 @@ class App extends Component {
     };
   }
   render() {
-    return (
-      <Main />
-      // <div className="App">
-      //   <header className="App-header">
-      //     <p>Hello, {this.state.user}</p>
-      //   </header>
-      // </div>
-    );
+    return <Main name={this.state.user} />;
   }
 }
 
