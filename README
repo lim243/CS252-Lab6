@@ -1,0 +1,19 @@
+# CS252-Lab06: Implementing an Web App
+
+Team Memeber:
+Yu-Lun Gao: gao447@purdue.edu
+Andrew Teck Kiat Lim: lim243@purdue.edu
+
+Project Name:
+EzCurrencyUp
+
+Description:
+This is a online currency conventer.
+Every person has an account including name, userid, password, and city.
+People can easily do the conversion as their wish.
+
+Tech:
+HTML 5
+Bootstrape
+Firebase
+MySQL
