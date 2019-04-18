@@ -5,7 +5,7 @@ class SignIn extends Component {
     super();
 
     this.state = {
-      email: "",
+      userName: "",
       password: ""
     };
   }
