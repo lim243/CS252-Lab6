@@ -1,23 +1,45 @@
 import React, { Component } from "react";
 import Titlebar from "./Titlebar";
+import app from "../server/base";
 
 class Main extends Component {
   constructor() {
     super();
 
+    this.database = app.database().ref("test");
+
     this.state = {
-      stockName: ""
+      currencies: []
     };
   }
 
+  getData(data) {
+    console.log(data);
+  }
+
+  componentDidMount() {
+    this.database.on("value", snap => {
+      // TODO: Parse the incoming data
+      console.log(snap.val());
+    });
+  }
+
   handleChange = ev => {
-    this.setState({ stockName: ev.target.value });
+    this.setState({ currencies: ev.target.value });
   };
 
   handleSubmit = ev => {
     console.log("Submit button pressed!");
     // To prevent the page from refreshing itself
     ev.preventDefault();
+
+    // to copy the previous currencies and adding new one
+    const currencies = [...this.state.currencies]; //copy the current ones
+    currencies.push({
+      currencyName: "USD"
+    });
+
+    this.setState(currencies);
   };
 
   render() {
@@ -34,9 +56,9 @@ class Main extends Component {
             <input type="text" name="inputField" onChange={this.handleChange} />
           </label>
 
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" onSubmit={this.handleSubmit} />
         </form>
-        <div>{this.state.stockName}</div>
+        <div>Requested Stock={this.state.currencies}</div>
       </div>
     );
   }
