@@ -20,10 +20,8 @@ class App extends Component {
       if (user) {
         //User is signed in
         this.handleAuthenticate(user);
-      } else {
-        //No user is signed in
-        this.afterSignOut();
       }
+      //TODO: Check how to logout
     });
   }
 
@@ -46,10 +44,11 @@ class App extends Component {
   render() {
     return (
       <div style={styles.website}>
-        {this.signedIn() ? <Main /> : <Login />}
-        {/* <Login />
-        <CreateNewAccount />
-        <Main name={this.state.user} /> */}
+        {this.signedIn() ? (
+          <Main user={this.state.user} signOut={this.signOut} />
+        ) : (
+          <Login />
+        )}
       </div>
     );
   }
