@@ -7,19 +7,10 @@ class Login extends Component {
 
     this.state = {
       userId:"",
-      userName: "",
       password: ""
     };
 
     this.users = app.database().ref("users");
-  }
-
-  addUsers(){
-    const data ={
-      uid: this.state.userId,
-      username: this.state.userName,
-      password: this.state.password
-    }
   }
 
   handleChange = event => {
