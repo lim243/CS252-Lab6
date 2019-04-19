@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Titlebar from "./Titlebar";
 import app from "../server/base";
+import { auth } from "../server/base";
 
 class Main extends Component {
   constructor() {
@@ -30,6 +31,10 @@ class Main extends Component {
 
       this.setState({ currencies: currencyList });
     });
+  }
+
+  componentWillUnmount() {
+    this.database.off();
   }
 
   handleChange = ev => {
@@ -70,7 +75,7 @@ class Main extends Component {
 
         {/* For the main input form area */}
         <div style={styles.title}>Hello, {this.props.name}</div>
-
+        <button onClick={this.props.signOut()}>Sign Out PRESSME pls</button>
         <div>Requested currencies</div>
 
         <div>
