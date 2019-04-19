@@ -15,8 +15,7 @@ class App extends Component {
   render() {
     return (
       <div style={styles.website}>
-        <Login />
-        {/* <CreateNewAccount /> */}
+        <CreateNewAccount />
         {/* <Main name={this.state.user} /> */}
       </div>
     );
