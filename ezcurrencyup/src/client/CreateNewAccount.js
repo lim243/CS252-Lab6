@@ -90,7 +90,7 @@ class CreateNewAccount extends Component {
                 />
               </div>
 
-              <input type="submit" value="Create New Acc" />
+              <input type="submit" value="Create" />
             </form>
           </main>
         </div>
@@ -112,7 +112,8 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     backgroundColor: "black",
-    border: "1px solid white"
+    background:"url('BackGround.png')"
+    //border: "1px solid white"
   },
 
   header: {
@@ -122,8 +123,9 @@ const styles = {
     lineHeight: "0%",
     fontSize: "3rem",
     backgroundColor: "black",
+    background:"url('HeaderBG.png')",
     fontFamily: "Nanum Pen Script",
-    border: "1px solid white"
+    //border: "1px solid white"
   },
 
   subHeader: {
@@ -151,7 +153,6 @@ const styles = {
     fontWeight: 300,
     fontSize: "3rem",
     fontFamily: "Indie Flower",
-    backgroundColor: "black"
   },
 
   labels: {
@@ -169,11 +170,24 @@ const styles = {
 
   form: {
     width: "40rem",
-    color: "white",
-    backgroundColor: "black",
+    color: "",
+    //backgroundColor: "black",
+    //background:"url('BackGround.png')",
     marginColor: "white",
     paddingBottom: "3rem",
     marginTop: "10rem"
+  },
+
+  lines:{
+    width:"800px",
+    height:"1px",
+    margin:"0px auto",
+    padding:"0px",
+    overflow:"hidden"
+  },
+
+  buttons:{
+
   }
 };
 
