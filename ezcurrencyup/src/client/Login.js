@@ -38,7 +38,7 @@ class Login extends Component {
           <main style={styles.main}>
             <form style={styles.form}>
               <h2 style={styles.subTitle}>
-                Create Your EzAccount
+                Login Your EzAccount
               </h2>
 
               <div>
@@ -51,17 +51,6 @@ class Login extends Component {
                 type="email"
                 name="email"
                 value={this.state.userId}
-                onChange={this.handleChange}
-                />
-              </div>
-
-              <div>
-                <label style={styles.labels}>
-                  Name: 
-                </label>
-                <input style={styles.inputs}
-                required
-                value={this.state.userName}
                 onChange={this.handleChange}
                 />
               </div>
