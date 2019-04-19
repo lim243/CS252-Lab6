@@ -8,23 +8,11 @@ class Main extends Component {
 
     this.database = app.database().ref("currencies");
 
-    this.users = app.database().ref("users");
-
     this.state = {
+      inputQuery: "",
       currencies: [],
-      currentCurrency: ""
+      currencyRequested: ""
     };
-  }
-
-  //TODO: Delete after, just for testing purposes
-  //  Add user data to database for
-  addUsers() {
-    const data = {
-      uid: "123-A",
-      username: "Andrew"
-    };
-
-    this.users.push(data);
   }
 
   componentDidMount() {
@@ -45,21 +33,33 @@ class Main extends Component {
   }
 
   handleChange = ev => {
-    this.setState({ currencies: ev.target.value });
+    this.setState({ inputQuery: ev.target.value });
   };
 
   handleSubmit = ev => {
-    console.log("Submit button pressed!");
     // To prevent the page from refreshing itself
     ev.preventDefault();
+    // console.log("currenciesQuery=" + this.state.inputQuery);
+    // Save the query
+    this.setState({ currencyRequested: this.state.inputQuery });
 
-    // to copy the previous currencies and adding new one
-    const currencies = [...this.state.currencies]; //copy the current ones
-    currencies.push({
-      currencyName: "USD"
+    // TODO: request the query
+
+    // to clear the input box
+    this.setState({ inputQuery: "" });
+
+    this.calculateCurrecy(this.state.currencyRequested);
+  };
+
+  calculateCurrecy = request => {
+    const currencies = this.state.currencies;
+    // console.log(currencies);
+    currencies.forEach(currency => {
+      console.log(currency[0]);
+      // if (currency[0] == request) {
+      //   console.log("currency=" + currency[1]);
+      // }
     });
-
-    this.setState(currencies);
   };
 
   render() {
@@ -76,7 +76,7 @@ class Main extends Component {
         <div>
           <ul>
             {this.state.currencies.map(val => {
-              console.log(val[1]);
+              // console.log(val[1]);
               return (
                 <li key={val[0]}>
                   {val[0]}: {val[1]}
@@ -93,16 +93,16 @@ class Main extends Component {
                 <input
                   type="text"
                   name="inputField"
+                  placeholder="type what currency"
+                  value={this.state.inputQuery}
                   onChange={this.handleChange}
+                  autoFocus
                 />
               </label>
 
-              <input
-                type="submit"
-                value="Submit"
-                onSubmit={this.handleSubmit}
-              />
+              <input type="submit" value="submit" />
             </form>
+            <div>current currency={this.state.currencyRequested}</div>
           </div>
         </div>
       </div>
