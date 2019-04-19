@@ -1,13 +1,25 @@
 import React, { Component } from "react";
+import app from "../server/base";
 
-class SignIn extends Component {
+class CreateNewAccount extends Component {
   constructor() {
     super();
 
     this.state = {
+      userId:"",
       userName: "",
       password: ""
     };
+
+    this.users = app.database().ref("users");
+  }
+
+  addUsers(){
+    const data ={
+      uid: this.state.userId,
+      username: this.state.userName,
+      password: this.state.password
+    }
   }
 
   handleChange = event => {
@@ -33,7 +45,7 @@ class SignIn extends Component {
           <main style={styles.main}>
             <form style={styles.form}>
               <h2 style={styles.subTitle}>
-                Sign-In Your EzAccount
+                Create Your EzAccount
               </h2>
 
               <div>
@@ -45,7 +57,18 @@ class SignIn extends Component {
                 autoFocus
                 type="email"
                 name="email"
-                value={this.state.email}
+                value={this.state.userId}
+                onChange={this.handleChange}
+                />
+              </div>
+
+              <div>
+                <label style={styles.labels}>
+                  Name: 
+                </label>
+                <input style={styles.inputs}
+                required
+                value={this.state.userName}
                 onChange={this.handleChange}
                 />
               </div>
@@ -64,7 +87,7 @@ class SignIn extends Component {
               </div>
 
               <button type="submit">
-                Sign In
+                Create
               </button>
 
             </form>
@@ -154,4 +177,4 @@ const styles = {
   }
 };
 
-export default SignIn;
+export default CreateNewAccount;

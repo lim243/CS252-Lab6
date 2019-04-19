@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 import Main from "./Main";
-import SignIn from "./SignIn";
+import CreateNewAccount from "./CreateNewAccount";
 
 class App extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div style={styles.website}>
-        <SignIn />
+        <CreateNewAccount />
         {/* <Main name={this.state.user} /> */}
       </div>
     );
