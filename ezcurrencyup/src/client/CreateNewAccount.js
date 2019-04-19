@@ -16,6 +16,7 @@ class CreateNewAccount extends Component {
     this.users = app.database().ref("users");
   }
 
+  // TODO: need to check if the user is already in the database or not
   addUser() {
     const user = this.state.user;
     console.log(user);
@@ -36,7 +37,6 @@ class CreateNewAccount extends Component {
 
   render() {
     return (
-
       <div style={styles.signIn}>
         <header style={styles.header}>
           <link
@@ -44,16 +44,24 @@ class CreateNewAccount extends Component {
             rel="stylesheet"
           />
           <span>
-            <p>Ez Currecny Up</p >
-            <p style={styles.subHeader}>Make Life Easier.</p >
+            <p>Ez Currecny Up</p>
+            <p style={styles.subHeader}>Make Life Easier.</p>
           </span>
         </header>
 
         <div style={styles.topnav}>
-          <a style={styles.active} href="CreateNewAccount.js">Create EzAccount</a> 
-          <a style={styles.topBlock} href="Login.js">Login EzAccount</a> 
-          <a style={styles.topBlock} href="https://github.com/allen981013">About Allen</a> 
-          <a style={styles.topBlock} href="https://github.com/lim243">About Andrew</a>
+          <a style={styles.active} href="CreateNewAccount.js">
+            Create EzAccount
+          </a>
+          <a style={styles.topBlock} href="Login.js">
+            Login EzAccount
+          </a>
+          <a style={styles.topBlock} href="https://github.com/allen981013">
+            About Allen
+          </a>
+          <a style={styles.topBlock} href="https://github.com/lim243">
+            About Andrew
+          </a>
         </div>
 
         <div style={styles.body}>
@@ -98,8 +106,7 @@ class CreateNewAccount extends Component {
                 />
               </div>
 
-              <input type="submit" value="Create" style={styles.buttons}/>
-
+              <input type="submit" value="Create" style={styles.buttons} />
             </form>
           </main>
         </div>
@@ -107,8 +114,6 @@ class CreateNewAccount extends Component {
     );
   }
 }
-
-
 
 const styles = {
   signIn: {
@@ -123,7 +128,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     backgroundColor: "black",
-    background:"url('BackGround.png')"
+    background: "url('BackGround.png')"
   },
 
   header: {
@@ -133,8 +138,8 @@ const styles = {
     lineHeight: "0%",
     fontSize: "3rem",
     backgroundColor: "black",
-    background:"url('HeaderBG.png')",
-    fontFamily: "Nanum Pen Script",
+    background: "url('HeaderBG.png')",
+    fontFamily: "Nanum Pen Script"
   },
 
   subHeader: {
@@ -151,9 +156,9 @@ const styles = {
     backgroundColor: "#696969",
     overflow: "auto"
   },
-  
+
   topBlock: {
-    width:"22%",
+    width: "22%",
     float: "left",
     color: "white",
     textAlign: "center",
@@ -163,9 +168,9 @@ const styles = {
     fontFamily: "Indie Flower",
     fontWeight: 600
   },
-  
+
   active: {
-    width:"22%",
+    width: "22%",
     float: "left",
     color: "white",
     textAlign: "center",
@@ -206,7 +211,6 @@ const styles = {
     padding: "7px 10px",
     width: "30%",
     margin: "0px 20px"
-
   },
 
   form: {
@@ -217,15 +221,15 @@ const styles = {
     marginTop: "10rem"
   },
 
-  lines:{
-    width:"800px",
-    height:"1px",
-    margin:"0px auto",
-    padding:"0px",
-    overflow:"hidden"
+  lines: {
+    width: "800px",
+    height: "1px",
+    margin: "0px auto",
+    padding: "0px",
+    overflow: "hidden"
   },
 
-  buttons:{
+  buttons: {
     backgroundColor: "#9932CC",
     border: "none",
     color: "white",

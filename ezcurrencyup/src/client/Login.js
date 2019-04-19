@@ -6,30 +6,67 @@ class Login extends Component {
     super();
 
     this.state = {
-      user: {
+      currentUser: {
         email: "",
         displayName: "",
         password: ""
       },
-      userList: {}
+      userList: []
     };
 
     this.authenticate = provider => {
       auth.signInWithPopup(provider);
     };
 
-    this.database = app.database().ref("/users");
+    this.usersList = app.database().ref("/users");
+  }
+
+  componentDidMount() {
+    //query to retrieve data from database
+    this.usersList.on("value", snap => {
+      //Parse incoming data from database
+      const userObj = snap.val();
+
+      //Convert incoming object to array
+      const userList = Object.keys(userObj).map(function(key) {
+        return [key, userObj[key]];
+      });
+
+      this.setState({ userList: userList });
+    });
   }
 
   handleChange = ev => {
-    //Copy the previous user and update state
-    const user = { ...this.state.user };
+    // Copy the previous user and update state
+    const user = { ...this.state.currentUser };
     user[ev.target.name] = ev.target.value;
-    this.setState({ user });
+    this.setState({ currentUser: user });
+    // const user = { ...this.props.user };
   };
 
   handleSubmit = ev => {
     ev.preventDefault();
+
+    // Current input data
+    const userInputEmail = this.state.currentUser.email;
+    const userInputPassword = this.state.currentUser.password;
+
+    const userList = this.state.userList;
+    // TODO: loop through the userlist and check if correct
+    userList.forEach(user => {
+      const userDataEmail = user[1].email;
+      const userDataPassword = user[1].password;
+
+      if (
+        userDataEmail == userInputEmail &&
+        userDataPassword == userInputPassword
+      ) {
+        console.log("Done");
+        return;
+      } else {
+        console.log("Wrong password");
+      }
+    });
   };
 
   render() {
@@ -46,18 +83,24 @@ class Login extends Component {
           </span>
         </header>
 
-
         <div style={styles.topnav}>
-          <a style={styles.topBlock} href="CreateNewAccount.js">Create EzAccount</a> 
-          <a style={styles.active} href="Login.js">Login EzAccount</a> 
-          <a style={styles.topBlock} href="https://github.com/allen981013">About Allen</a> 
-          <a style={styles.topBlock} href="https://github.com/lim243">About Andrew</a>
+          <a style={styles.topBlock} href="CreateNewAccount.js">
+            Create EzAccount
+          </a>
+          <a style={styles.active} href="Login.js">
+            Login EzAccount
+          </a>
+          <a style={styles.topBlock} href="https://github.com/allen981013">
+            About Allen
+          </a>
+          <a style={styles.topBlock} href="https://github.com/lim243">
+            About Andrew
+          </a>
         </div>
-
 
         <div style={styles.body}>
           <main style={styles.main}>
-            <form style={styles.form}>
+            <form style={styles.form} onSubmit={this.handleSubmit}>
               <h2 style={styles.subTitle}>Login Your EzAccount</h2>
 
               <div>
@@ -88,7 +131,8 @@ class Login extends Component {
               <button style={styles.buttons} type="submit">
                 Login
               </button>
-              <button style={styles.buttons} 
+              <button
+                style={styles.buttons}
                 type="button"
                 onClick={() => this.authenticate(googleProvider)}
               >
@@ -115,7 +159,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     backgroundColor: "black",
-    background:"url('BackGround.png')"
+    background: "url('BackGround.png')"
   },
 
   header: {
@@ -125,8 +169,8 @@ const styles = {
     lineHeight: "0%",
     fontSize: "3rem",
     backgroundColor: "black",
-    background:"url('HeaderBG.png')",
-    fontFamily: "Nanum Pen Script",
+    background: "url('HeaderBG.png')",
+    fontFamily: "Nanum Pen Script"
   },
 
   subHeader: {
@@ -143,9 +187,9 @@ const styles = {
     backgroundColor: "#696969",
     overflow: "auto"
   },
-  
+
   topBlock: {
-    width:"22%",
+    width: "22%",
     float: "left",
     color: "white",
     textAlign: "center",
@@ -155,9 +199,9 @@ const styles = {
     fontFamily: "Indie Flower",
     fontWeight: 600
   },
-  
+
   active: {
-    width:"22%",
+    width: "22%",
     float: "left",
     color: "white",
     textAlign: "center",
@@ -198,7 +242,6 @@ const styles = {
     padding: "7px 10px",
     width: "30%",
     margin: "0px 20px"
-    
   },
 
   form: {
@@ -209,15 +252,15 @@ const styles = {
     marginTop: "10rem"
   },
 
-  lines:{
-    width:"800px",
-    height:"1px",
-    margin:"0px auto",
-    padding:"0px",
-    overflow:"hidden"
+  lines: {
+    width: "800px",
+    height: "1px",
+    margin: "0px auto",
+    padding: "0px",
+    overflow: "hidden"
   },
 
-  buttons:{
+  buttons: {
     backgroundColor: "#9932CC",
     border: "none",
     color: "white",

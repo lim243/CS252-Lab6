@@ -79,7 +79,7 @@ class Main extends Component {
         <Titlebar />
 
         {/* For the main input form area */}
-        <div style={styles.title}>Hello, {this.props.name}</div>
+        <div style={styles.title}>Hello, {this.props.user.displayName}</div>
         <button onClick={this.props.signOut}>Sign Out PRESSME pls</button>
         <div>Requested currencies</div>
 
