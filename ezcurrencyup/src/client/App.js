@@ -11,7 +11,8 @@ class App extends Component {
     super();
     this.state = {
       user: {},
-      displayName: null
+      displayName: null,
+      loginStatus: false
     };
   }
 
@@ -26,19 +27,21 @@ class App extends Component {
   }
 
   signedIn = () => {
-    return this.state.user.email;
+    console.log(this.state.loginStatus);
+    return this.state.loginStatus;
   };
 
   signOut = () => {
     auth.signOut();
+    this.afterSignOut();
   };
 
   handleAuthenticate = user => {
-    this.setState({ user });
+    this.setState({ user, loginStatus: true });
   };
 
   afterSignOut = () => {
-    this.setState({ user: {} });
+    this.setState({ user: {}, loginStatus: false });
   };
 
   render() {
@@ -47,7 +50,8 @@ class App extends Component {
         {this.signedIn() ? (
           <Main user={this.state.user} signOut={this.signOut} />
         ) : (
-          <CreateNewAccount />
+          // <CreateNewAccount />
+          <Login />
         )}
       </div>
     );

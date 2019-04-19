@@ -67,6 +67,11 @@ class Main extends Component {
     });
   };
 
+  signOut = () => {
+    console.log(this.props.loginStatus);
+    // this.setState({ this.props.loginStatus: false })
+  };
+
   render() {
     return (
       <div>
@@ -75,7 +80,7 @@ class Main extends Component {
 
         {/* For the main input form area */}
         <div style={styles.title}>Hello, {this.props.name}</div>
-        <button onClick={this.props.signOut()}>Sign Out PRESSME pls</button>
+        <button onClick={this.props.signOut}>Sign Out PRESSME pls</button>
         <div>Requested currencies</div>
 
         <div>
