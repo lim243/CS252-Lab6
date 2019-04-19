@@ -148,12 +148,12 @@ const styles = {
 
   topnav: {
     width: "100%",
-    backgroundColor: "#333",
+    backgroundColor: "#696969",
     overflow: "auto"
   },
   
   topBlock: {
-    width:"25%",
+    width:"22%",
     float: "left",
     color: "white",
     textAlign: "center",
@@ -165,7 +165,7 @@ const styles = {
   },
   
   active: {
-    width:"25%",
+    width:"22%",
     float: "left",
     color: "white",
     textAlign: "center",
@@ -206,6 +206,7 @@ const styles = {
     padding: "7px 10px",
     width: "30%",
     margin: "0px 20px"
+
   },
 
   form: {
@@ -230,6 +231,7 @@ const styles = {
     color: "white",
     padding: "15px 32px",
     fontSize: "16px",
+    margin: "0px 10px"
   }
 };
 

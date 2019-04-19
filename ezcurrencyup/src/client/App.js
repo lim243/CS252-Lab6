@@ -47,7 +47,7 @@ class App extends Component {
         {this.signedIn() ? (
           <Main user={this.state.user} signOut={this.signOut} />
         ) : (
-          <Login />
+          <CreateNewAccount />
         )}
       </div>
     );

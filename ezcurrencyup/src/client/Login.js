@@ -46,7 +46,14 @@ class Login extends Component {
           </span>
         </header>
 
-        <div style={styles.lines} />
+
+        <div style={styles.topnav}>
+          <a style={styles.topBlock} href="CreateNewAccount.js">Create EzAccount</a> 
+          <a style={styles.active} href="Login.js">Login EzAccount</a> 
+          <a style={styles.topBlock} href="https://github.com/allen981013">About Allen</a> 
+          <a style={styles.topBlock} href="https://github.com/lim243">About Andrew</a>
+        </div>
+
 
         <div style={styles.body}>
           <main style={styles.main}>
@@ -81,7 +88,7 @@ class Login extends Component {
               <button style={styles.buttons} type="submit">
                 Login
               </button>
-              <button
+              <button style={styles.buttons} 
                 type="button"
                 onClick={() => this.authenticate(googleProvider)}
               >
@@ -101,33 +108,25 @@ const styles = {
     flexDirection: "column"
   },
 
-  lines: {
-    width: "800px",
-    height: "1px",
-    margin: "0px auto",
-    padding: "0px",
-    overflow: "hidden"
-  },
-
   body: {
     flex: 1,
     textAlign: "center",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: "black"
-    //border: "1px solid white"
+    backgroundColor: "black",
+    background:"url('BackGround.png')"
   },
 
   header: {
     textIndent: "1rem",
     color: "white",
-    fontWeight: 450,
+    fontWeight: "450",
     lineHeight: "0%",
     fontSize: "3rem",
     backgroundColor: "black",
-    fontFamily: "Nanum Pen Script"
-    //border: "1px solid white"
+    background:"url('HeaderBG.png')",
+    fontFamily: "Nanum Pen Script",
   },
 
   subHeader: {
@@ -137,6 +136,37 @@ const styles = {
     lineHeight: "0",
     fontSize: "1.5rem",
     backgroundColor: "black"
+  },
+
+  topnav: {
+    width: "100%",
+    backgroundColor: "#696969",
+    overflow: "auto"
+  },
+  
+  topBlock: {
+    width:"22%",
+    float: "left",
+    color: "white",
+    textAlign: "center",
+    padding: "14px 16px",
+    textDecoration: "none",
+    fontSize: "17px",
+    fontFamily: "Indie Flower",
+    fontWeight: 600
+  },
+  
+  active: {
+    width:"22%",
+    float: "left",
+    color: "white",
+    textAlign: "center",
+    padding: "14px 16px",
+    textDecoration: "none",
+    fontSize: "17px",
+    backgroundColor: "#9932CC",
+    fontFamily: "Indie Flower",
+    fontWeight: 600
   },
 
   main: {
@@ -154,8 +184,7 @@ const styles = {
     color: "white",
     fontWeight: 300,
     fontSize: "3rem",
-    fontFamily: "Indie Flower",
-    backgroundColor: "black"
+    fontFamily: "Indie Flower"
   },
 
   labels: {
@@ -169,18 +198,33 @@ const styles = {
     padding: "7px 10px",
     width: "30%",
     margin: "0px 20px"
+    
   },
 
   form: {
     width: "40rem",
-    color: "white",
-    backgroundColor: "black",
+    color: "",
     marginColor: "white",
     paddingBottom: "3rem",
     marginTop: "10rem"
   },
 
-  buttons: {}
+  lines:{
+    width:"800px",
+    height:"1px",
+    margin:"0px auto",
+    padding:"0px",
+    overflow:"hidden"
+  },
+
+  buttons:{
+    backgroundColor: "#9932CC",
+    border: "none",
+    color: "white",
+    padding: "15px 32px",
+    fontSize: "16px",
+    margin: "0px 10px"
+  }
 };
 
 export default Login;
