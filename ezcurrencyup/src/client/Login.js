@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import app from "../server/base";
 
-class CreateNewAccount extends Component {
+class Login extends Component {
   constructor() {
     super();
 
@@ -191,4 +191,4 @@ const styles = {
   }
 };
 
-export default CreateNewAccount;
+export default Login;
