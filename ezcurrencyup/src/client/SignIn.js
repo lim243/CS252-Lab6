@@ -20,36 +20,53 @@ class SignIn extends Component {
     return (
       <div style={styles.signIn}>
         <header style={styles.header}>
-          <span>EzCurrencyUp</span>
+          <span>
+            <p>Ez Currecny Up</p>
+            <p style={styles.subHeader}>Make Life Easier.</p>
+          </span>
         </header>
 
-        <main style={styles.main}>
-          <form style={styles.form}>
-            <h2 style={styles.subTitle}>SignIn</h2>
+        <body style={styles.body}>
+          <main style={styles.main}>
+            <form style={styles.form}>
+              <h2 style={styles.subTitle}>
+                Sign-In Your EzAccount
+              </h2>
 
-            <label>Email</label>
+              <div>
+                <label>
+                  Email: 
+                </label>
 
-            <input
-              autoFocus
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
+                <input
+                autoFocus
+                type="email"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                />
+              </div>
+            
+              <div>
+                <label>
+                  Password: 
+                </label>
+                <input
+                required
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                />
+              </div>
 
-            <label>Password</label>
+              <button type="submit">
+                Sign In
+              </button>
 
-            <input
-              required
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-
-            <button type="submit">Sign In</button>
-          </form>
-        </main>
+            </form>
+          </main>
+        </body>
       </div>
     );
   }
@@ -58,9 +75,18 @@ class SignIn extends Component {
 const styles = {
   signIn: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
 
+  body:{
+    flex: 1,
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundColor:"black"
+  },
+  
   main: {
     flex: 1,
     textAlign: "center",
@@ -68,32 +94,45 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     margin: "0 auto",
-    paddingBottom: "3rem"
+    paddingBottom: "3rem",
   },
 
   header: {
-    textAlign: "center",
-    color: "black",
-    fontWeight: 400,
-    lineHeight: "1.5",
-    fontSize: "2rem",
-    backgroundColor: "cornflowerblue"
+    textIndent: "1rem",
+    color: "white",
+    fontWeight: 450,
+    lineHeight: "0",
+    fontSize: "3rem",
+    backgroundColor: "black",
+    fontFamily:"Nanum Pen Script",
+  },
+
+  subHeader: {
+    textIndent: "15rem",
+    color: "white",
+    fontWeight: 200,
+    lineHeight: "0",
+    fontSize: "1.5rem",
+    backgroundColor: "black"
   },
 
   subTitle: {
     textAlign: "center",
-    color: "black",
-    fontWeight: 300,
-    fontSize: "3rem"
+    color: "white",
+    fontWeight: 350,
+    fontSize: "3.5rem",
+    fontFamily:"Indie Flower",
+    backgroundColor:"black"
   },
 
   form: {
     width: "40rem",
-    backgroundColor: "white",
-    boxShadow: "0 1px 1px rgba(0,0,0,.1)",
-    marginBottom: "2rem",
-    paddingBottom: "2rem",
-    marginTop: "10rem"
+    color:"white",
+    backgroundColor: "black",
+    marginBottom: "3rem",
+    borderColor:"white",
+    paddingBottom: "3rem",
+    marginTop: "10rem",
   }
 };
 

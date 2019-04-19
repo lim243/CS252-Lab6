@@ -13,12 +13,18 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={styles.website}>
         <SignIn />
         {/* <Main name={this.state.user} /> */}
       </div>
     );
   }
 }
+
+const styles = {
+  website:{
+    height:"100%"
+  }
+};
 
 export default App;
