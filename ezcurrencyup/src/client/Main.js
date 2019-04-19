@@ -11,7 +11,8 @@ class Main extends Component {
     this.users = app.database().ref("users");
 
     this.state = {
-      currencies: []
+      currencies: [],
+      currentCurrency: ""
     };
   }
 
@@ -37,7 +38,7 @@ class Main extends Component {
         return [key, currencyObj[key]];
       });
 
-      console.log(currencyList);
+      // console.log(currencyList);
 
       this.setState({ currencies: currencyList });
     });
@@ -69,15 +70,41 @@ class Main extends Component {
 
         {/* For the main input form area */}
         <div style={styles.title}>Hello, {this.props.name}</div>
-        <form style={styles.form} onSubmit={this.handleSubmit}>
-          <label>
-            Input:
-            <input type="text" name="inputField" onChange={this.handleChange} />
-          </label>
 
-          <input type="submit" value="Submit" onSubmit={this.handleSubmit} />
-        </form>
-        <div>Requested Stock={this.state.currencies}</div>
+        <div>Requested currencies</div>
+
+        <div>
+          <ul>
+            {this.state.currencies.map(val => {
+              console.log(val[1]);
+              return (
+                <li key={val[0]}>
+                  {val[0]}: {val[1]}
+                </li>
+              );
+            })}
+          </ul>
+
+          <div>
+            Input form:
+            <form style={styles.form} onSubmit={this.handleSubmit}>
+              <label>
+                Input:
+                <input
+                  type="text"
+                  name="inputField"
+                  onChange={this.handleChange}
+                />
+              </label>
+
+              <input
+                type="submit"
+                value="Submit"
+                onSubmit={this.handleSubmit}
+              />
+            </form>
+          </div>
+        </div>
       </div>
     );
   }
