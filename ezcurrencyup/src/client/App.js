@@ -9,12 +9,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: "Andrew"
+      user: {},
+      displayName: null
     };
   }
   render() {
     return (
       <div style={styles.website}>
+        <Login />
         <CreateNewAccount />
         {/* <Main name={this.state.user} /> */}
       </div>
