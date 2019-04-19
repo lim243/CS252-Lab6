@@ -1,77 +1,92 @@
 import React, { Component } from "react";
-import app from "../server/base";
+import app, { googleProvider, auth } from "../server/base";
 
 class Login extends Component {
   constructor() {
     super();
 
     this.state = {
-      userId:"",
-      password: ""
+      user: {
+        email: "",
+        displayName: "",
+        password: ""
+      },
+      userList: {}
     };
 
-    this.users = app.database().ref("users");
+    this.authenticate = provider => {
+      auth.signInWithPopup(provider);
+    };
+
+    this.database = app.database().ref("/users");
   }
 
-  handleChange = event => {
-    const newValue = {};
-    newValue[event.target.name] = event.target.value;
-    this.setState(newValue);
+  handleChange = ev => {
+    //Copy the previous user and update state
+    const user = { ...this.state.user };
+    user[ev.target.name] = ev.target.value;
+    this.setState({ user });
+  };
+
+  handleSubmit = ev => {
+    ev.preventDefault();
   };
 
   render() {
     return (
       <div style={styles.signIn}>
-
         <header style={styles.header}>
-          <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-          </link>
+          <link
+            href="https://fonts.googleapis.com/css?family=Indie+Flower"
+            rel="stylesheet"
+          />
           <span>
             <p>Ez Currecny Up</p>
             <p style={styles.subHeader}>Make Life Easier.</p>
           </span>
         </header>
 
-        <div style={styles.lines}></div>
+        <div style={styles.lines} />
 
         <div style={styles.body}>
           <main style={styles.main}>
             <form style={styles.form}>
-              <h2 style={styles.subTitle}>
-                Login Your EzAccount
-              </h2>
+              <h2 style={styles.subTitle}>Login Your EzAccount</h2>
 
               <div>
-                <label style={styles.labels}>
-                  Email: 
-                </label>
+                <label style={styles.labels}>Email:</label>
 
-                <input style={styles.inputs}
-                autoFocus
-                type="email"
-                name="email"
-                value={this.state.userId}
-                onChange={this.handleChange}
+                <input
+                  style={styles.inputs}
+                  autoFocus
+                  type="email"
+                  name="email"
+                  value={this.state.userId}
+                  onChange={this.handleChange}
                 />
               </div>
-            
+
               <div>
-                <label style={styles.labels}>
-                  Password: 
-                </label>
-                <input style={styles.inputs}
-                required
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
+                <label style={styles.labels}>Password:</label>
+                <input
+                  style={styles.inputs}
+                  required
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
                 />
               </div>
 
               <button style={styles.buttons} type="submit">
-                Create
+                Login
               </button>
-
+              <button
+                type="button"
+                onClick={() => this.authenticate(googleProvider)}
+              >
+                Sign In with GOOGLE
+              </button>
             </form>
           </main>
         </div>
@@ -83,24 +98,24 @@ class Login extends Component {
 const styles = {
   signIn: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column"
   },
 
-  lines:{
-    width:"800px",
-    height:"1px",
-    margin:"0px auto",
-    padding:"0px",
-    overflow:"hidden"
+  lines: {
+    width: "800px",
+    height: "1px",
+    margin: "0px auto",
+    padding: "0px",
+    overflow: "hidden"
   },
 
-  body:{
+  body: {
     flex: 1,
     textAlign: "center",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor:"black",
+    backgroundColor: "black"
     //border: "1px solid white"
   },
 
@@ -111,7 +126,7 @@ const styles = {
     lineHeight: "0%",
     fontSize: "3rem",
     backgroundColor: "black",
-    fontFamily:"Nanum Pen Script",
+    fontFamily: "Nanum Pen Script"
     //border: "1px solid white"
   },
 
@@ -131,7 +146,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     margin: "0 auto",
-    paddingBottom: "3rem",
+    paddingBottom: "3rem"
   },
 
   subTitle: {
@@ -139,36 +154,33 @@ const styles = {
     color: "white",
     fontWeight: 300,
     fontSize: "3rem",
-    fontFamily:"Indie Flower",
-    backgroundColor:"black"
+    fontFamily: "Indie Flower",
+    backgroundColor: "black"
   },
 
-  labels:{
+  labels: {
     color: "white",
     fontWeight: 450,
-    fontFamily:"Indie Flower",
+    fontFamily: "Indie Flower",
     lineHeight: "4rem"
-
   },
 
-  inputs:{
+  inputs: {
     padding: "7px 10px",
-    width:"30%",
-    margin:"0px 20px"
+    width: "30%",
+    margin: "0px 20px"
   },
 
   form: {
     width: "40rem",
-    color:"white",
+    color: "white",
     backgroundColor: "black",
-    marginColor:"white",
+    marginColor: "white",
     paddingBottom: "3rem",
-    marginTop: "10rem",
+    marginTop: "10rem"
   },
 
-  buttons:{
-
-  }
+  buttons: {}
 };
 
 export default Login;
