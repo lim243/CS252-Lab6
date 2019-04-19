@@ -6,15 +6,24 @@ class Main extends Component {
   constructor() {
     super();
 
-    this.database = app.database().ref("test");
+    this.database = app.database().ref("currencies");
+
+    this.users = app.database().ref("users");
 
     this.state = {
       currencies: []
     };
   }
 
-  getData(data) {
-    console.log(data);
+  //TODO: Delete after, just for testing purposes
+  //  Add user data to database for
+  addUsers() {
+    const data = {
+      uid: "123-A",
+      username: "Andrew"
+    };
+
+    this.users.push(data);
   }
 
   componentDidMount() {
@@ -27,6 +36,7 @@ class Main extends Component {
       const currencyList = Object.keys(currencyObj).map(function(key) {
         return [key, currencyObj[key]];
       });
+
       console.log(currencyList);
 
       this.setState({ currencies: currencyList });
