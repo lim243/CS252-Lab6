@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 import Main from "./Main";
+import Login from "./Login";
 import CreateNewAccount from "./CreateNewAccount";
 
 class App extends Component {
@@ -14,7 +15,8 @@ class App extends Component {
   render() {
     return (
       <div style={styles.website}>
-        <CreateNewAccount />
+        <Login />
+        {/* <CreateNewAccount /> */}
         {/* <Main name={this.state.user} /> */}
       </div>
     );
@@ -22,8 +24,8 @@ class App extends Component {
 }
 
 const styles = {
-  website:{
-    height:"100%"
+  website: {
+    height: "100%"
   }
 };
 
