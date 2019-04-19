@@ -19,7 +19,10 @@ class SignIn extends Component {
   render() {
     return (
       <div style={styles.signIn}>
+
         <header style={styles.header}>
+          <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+          </link>
           <span>
             <p>Ez Currecny Up</p>
             <p style={styles.subHeader}>Make Life Easier.</p>
@@ -34,11 +37,11 @@ class SignIn extends Component {
               </h2>
 
               <div>
-                <label>
+                <label style={styles.labels}>
                   Email: 
                 </label>
 
-                <input
+                <input style={styles.inputs}
                 autoFocus
                 type="email"
                 name="email"
@@ -48,10 +51,10 @@ class SignIn extends Component {
               </div>
             
               <div>
-                <label>
+                <label style={styles.labels}>
                   Password: 
                 </label>
-                <input
+                <input style={styles.inputs}
                 required
                 type="password"
                 name="password"
@@ -84,27 +87,19 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor:"black"
-  },
-  
-  main: {
-    flex: 1,
-    textAlign: "center",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    margin: "0 auto",
-    paddingBottom: "3rem",
+    backgroundColor:"black",
+    border: "1px solid white"
   },
 
   header: {
     textIndent: "1rem",
     color: "white",
     fontWeight: 450,
-    lineHeight: "0",
+    lineHeight: "0%",
     fontSize: "3rem",
     backgroundColor: "black",
     fontFamily:"Nanum Pen Script",
+    border: "1px solid white"
   },
 
   subHeader: {
@@ -116,21 +111,44 @@ const styles = {
     backgroundColor: "black"
   },
 
+  main: {
+    flex: 1,
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    margin: "0 auto",
+    paddingBottom: "3rem",
+  },
+
   subTitle: {
     textAlign: "center",
     color: "white",
-    fontWeight: 350,
-    fontSize: "3.5rem",
+    fontWeight: 300,
+    fontSize: "3rem",
     fontFamily:"Indie Flower",
     backgroundColor:"black"
+  },
+
+  labels:{
+    color: "white",
+    fontWeight: 450,
+    fontFamily:"Indie Flower",
+    lineHeight: "4rem"
+
+  },
+
+  inputs:{
+    padding: "7px 10px",
+    width:"30%",
+    margin:"0px 20px"
   },
 
   form: {
     width: "40rem",
     color:"white",
     backgroundColor: "black",
-    marginBottom: "3rem",
-    borderColor:"white",
+    marginColor:"white",
     paddingBottom: "3rem",
     marginTop: "10rem",
   }
