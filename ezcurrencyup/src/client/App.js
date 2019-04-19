@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SignIn />
+        {/* <SignIn /> */}
         <Main name={this.state.user} />
       </div>
     );

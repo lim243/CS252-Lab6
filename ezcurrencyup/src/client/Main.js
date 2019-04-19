@@ -18,9 +18,18 @@ class Main extends Component {
   }
 
   componentDidMount() {
+    //query to retrieve data from database
     this.database.on("value", snap => {
-      // TODO: Parse the incoming data
-      console.log(snap.val());
+      //Parse incoming data from database
+      const currencyObj = snap.val();
+
+      //Convert incoming object to array
+      const currencyList = Object.keys(currencyObj).map(function(key) {
+        return [key, currencyObj[key]];
+      });
+      console.log(currencyList);
+
+      this.setState({ currencies: currencyList });
     });
   }
 
