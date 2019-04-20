@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Titlebar from "./Titlebar";
 import app from "../server/base";
+// import Dropdown from "./Dropdown";
 import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 // import { auth } from "../server/base";
 
 class Main extends Component {
@@ -13,7 +15,11 @@ class Main extends Component {
     this.state = {
       inputQuery: "",
       currencies: [],
-      currencyRequested: ""
+      currencyRequested: "",
+      sourceRequest: [],
+      targetRequest: [],
+      placeholderSource: "Please choose a base currency",
+      placeholderRequest: "Please choose a target currency"
     };
   }
 
@@ -55,15 +61,31 @@ class Main extends Component {
   };
 
   //TODO: calculate currency
-  calculateCurrecy = request => {
-    const currencies = this.state.currencies;
-    // console.log(currencies);
-    currencies.forEach(currency => {
-      console.log(currency[0]);
-      // if (currency[0] == request) {
-      //   console.log("currency=" + currency[1]);
-      // }
+  calculateCurrecy = (source, target) => {
+    // const currencies = this.state.currencies;
+    console.log(source, target);
+  };
+
+  dropSourceRequest = target => {
+    this.setState({
+      sourceRequest: target,
+      placeholderSource: target.value[0]
     });
+  };
+
+  dropTargetRequest = target => {
+    this.setState({
+      targetRequest: target,
+      placeholderRequest: target.value[0]
+    });
+  };
+
+  dropOnChange = target => {
+    const currencyName = target.value[0];
+    const currencyVal = target.value[1];
+    this.setState({ dropdownSelection: currencyVal });
+
+    // this.calculateCurrecy(currencyVal);
   };
 
   render() {
@@ -106,13 +128,20 @@ class Main extends Component {
 
               <input type="submit" value="submit" />
             </form>
+            {/* <div>current currency={this.state.currencyRequested}</div> */}
+          </div>
+          <div>
+            {/* <Dropdown /> */}
             <Dropdown
-              options={options}
-              onChange={this._onSelect}
-              value={options[0]}
-              placeholder="Select an option"
+              options={this.state.currencies}
+              onChange={this.dropSourceRequest}
+              value={this.state.placeholderSource}
             />
-            <div>current currency={this.state.currencyRequested}</div>
+            <Dropdown
+              options={this.state.currencies}
+              onChange={this.dropTargetRequest}
+              value={this.state.placeholderRequest}
+            />
           </div>
         </div>
       </div>
