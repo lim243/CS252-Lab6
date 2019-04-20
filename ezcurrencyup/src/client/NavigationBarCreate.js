@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
-class NavigationBar extends Component {
+class NavigationBarCreate extends Component {
   render() {
     return (
       <div style={styles.title}>
         <div style={styles.topnav}>
-          <a style={styles.topBlock} href="CreateNewAccount.js">
+          <a style={styles.active} href="CreateNewAccount.js">
             Create EzAccount
           </a>
-          <a style={styles.active} href="Login.js">
+          <a style={styles.topBlock} href="Login.js">
             Login EzAccount
           </a>
           <a style={styles.topBlock} href="https://github.com/allen981013">
@@ -60,4 +60,4 @@ const styles = {
   }
 };
 
-export default NavigationBar;
+export default NavigationBarCreate;

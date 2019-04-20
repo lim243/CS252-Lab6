@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import app, { googleProvider, auth } from "../server/base";
 import Titlebar from "./Titlebar";
-import NavigationBar from "./NavigationBar";
+import NavigationBarLogin from "./NavigationBarLogin";
 
 class Login extends Component {
   constructor() {
@@ -102,21 +102,7 @@ class Login extends Component {
         </header> */}
         <Titlebar />
 
-        {/* <div style={styles.topnav}>
-          <a style={styles.topBlock} href="CreateNewAccount.js">
-            Create EzAccount
-          </a>
-          <a style={styles.active} href="Login.js">
-            Login EzAccount
-          </a>
-          <a style={styles.topBlock} href="https://github.com/allen981013">
-            About Allen
-          </a>
-          <a style={styles.topBlock} href="https://github.com/lim243">
-            About Andrew
-          </a>
-        </div> */}
-        <NavigationBar />
+        <NavigationBarLogin />
 
         <div style={styles.body}>
           <main style={styles.main}>

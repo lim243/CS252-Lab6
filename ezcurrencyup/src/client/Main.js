@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Titlebar from "./Titlebar";
-import app from "../server/base";
-// import Dropdown from "./Dropdown";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import NavigationBar from "./NavigationBar";
-// import { auth } from "../server/base";
+
+import Titlebar from "./Titlebar";
+import app from "../server/base";
 
 class Main extends Component {
   constructor() {

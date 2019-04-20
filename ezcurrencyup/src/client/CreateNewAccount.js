@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import app from "../server/base";
+import NavigationBarCreate from "./NavigationBarCreate";
 
 class CreateNewAccount extends Component {
   constructor() {
@@ -49,7 +50,7 @@ class CreateNewAccount extends Component {
           </span>
         </header>
 
-        <div style={styles.topnav}>
+        {/* <div style={styles.topnav}>
           <a style={styles.active} href="CreateNewAccount.js">
             Create EzAccount
           </a>
@@ -62,7 +63,8 @@ class CreateNewAccount extends Component {
           <a style={styles.topBlock} href="https://github.com/lim243">
             About Andrew
           </a>
-        </div>
+        </div> */}
+        <NavigationBarCreate />
 
         <div style={styles.body}>
           <main style={styles.main}>
