@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import app, { googleProvider, auth } from "../server/base";
+import Titlebar from "./Titlebar";
 
 class Login extends Component {
   constructor() {
@@ -51,6 +52,8 @@ class Login extends Component {
   handleSubmit = ev => {
     ev.preventDefault();
 
+    var flag = false;
+
     // Current input data
     const userInputEmail = this.state.currentUser.email;
     const userInputPassword = this.state.currentUser.password;
@@ -73,17 +76,20 @@ class Login extends Component {
         this.setState({ currentUser: {} }); //Reset the currentUser field
 
         this.props.handleAuthenticate(currentUser); //Call the handle auth function
+        flag = true;
         return;
-      } else {
-        console.log("Wrong password or email");
       }
     });
+
+    if (flag === false) {
+      alert("Incorrect email or password! Please try again!");
+    }
   };
 
   render() {
     return (
       <div style={styles.signIn}>
-        <header style={styles.header}>
+        {/* <header style={styles.header}>
           <link
             href="https://fonts.googleapis.com/css?family=Indie+Flower"
             rel="stylesheet"
@@ -92,7 +98,8 @@ class Login extends Component {
             <p>Ez Currecny Up</p>
             <p style={styles.subHeader}>Make Life Easier.</p>
           </span>
-        </header>
+        </header> */}
+        <Titlebar />
 
         <div style={styles.topnav}>
           <a style={styles.topBlock} href="CreateNewAccount.js">
@@ -173,25 +180,25 @@ const styles = {
     background: "url('BackGround.png')"
   },
 
-  header: {
-    textIndent: "1rem",
-    color: "white",
-    fontWeight: "450",
-    lineHeight: "0%",
-    fontSize: "3rem",
-    backgroundColor: "black",
-    background: "url('HeaderBG.png')",
-    fontFamily: "Nanum Pen Script"
-  },
+  // header: {
+  //   textIndent: "1rem",
+  //   color: "white",
+  //   fontWeight: "450",
+  //   lineHeight: "0%",
+  //   fontSize: "3rem",
+  //   backgroundColor: "black",
+  //   background: "url('HeaderBG.png')",
+  //   fontFamily: "Nanum Pen Script"
+  // },
 
-  subHeader: {
-    textIndent: "15rem",
-    color: "white",
-    fontWeight: 200,
-    lineHeight: "0",
-    fontSize: "1.5rem",
-    backgroundColor: "black"
-  },
+  // subHeader: {
+  //   textIndent: "15rem",
+  //   color: "white",
+  //   fontWeight: 200,
+  //   lineHeight: "0",
+  //   fontSize: "1.5rem",
+  //   backgroundColor: "black"
+  // },
 
   topnav: {
     width: "100%",
