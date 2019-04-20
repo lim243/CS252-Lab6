@@ -11,7 +11,6 @@ class App extends Component {
     super();
     this.state = {
       user: {},
-      // displayName: "",
       loginStatus: false
     };
   }
@@ -22,7 +21,6 @@ class App extends Component {
         //User is signed in
         this.handleAuthenticate(user);
       }
-      //TODO: Check how to logout
     });
   }
 

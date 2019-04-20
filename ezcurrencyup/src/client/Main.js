@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Titlebar from "./Titlebar";
 import app from "../server/base";
-import { auth } from "../server/base";
+// import { auth } from "../server/base";
 
 class Main extends Component {
   constructor() {
@@ -27,13 +27,12 @@ class Main extends Component {
         return [key, currencyObj[key]];
       });
 
-      // console.log(currencyList);
-
       this.setState({ currencies: currencyList });
     });
   }
 
   componentWillUnmount() {
+    //Unmount the database query
     this.database.off();
   }
 
@@ -44,11 +43,9 @@ class Main extends Component {
   handleSubmit = ev => {
     // To prevent the page from refreshing itself
     ev.preventDefault();
-    // console.log("currenciesQuery=" + this.state.inputQuery);
+
     // Save the query
     this.setState({ currencyRequested: this.state.inputQuery });
-
-    // TODO: request the query
 
     // to clear the input box
     this.setState({ inputQuery: "" });
@@ -56,6 +53,7 @@ class Main extends Component {
     this.calculateCurrecy(this.state.currencyRequested);
   };
 
+  //TODO: calculate currency
   calculateCurrecy = request => {
     const currencies = this.state.currencies;
     // console.log(currencies);
@@ -65,11 +63,6 @@ class Main extends Component {
       //   console.log("currency=" + currency[1]);
       // }
     });
-  };
-
-  signOut = () => {
-    console.log(this.props.loginStatus);
-    // this.setState({ this.props.loginStatus: false })
   };
 
   render() {

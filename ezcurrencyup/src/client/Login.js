@@ -55,8 +55,6 @@ class Login extends Component {
     const userInputEmail = this.state.currentUser.email;
     const userInputPassword = this.state.currentUser.password;
 
-    // const userList = this.state.userList;
-    // TODO: loop through the userlist and check if correct
     this.state.userList.forEach(user => {
       const userDataEmail = user[1].email;
       const userDataPassword = user[1].password;
