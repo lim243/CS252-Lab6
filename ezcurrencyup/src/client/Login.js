@@ -36,6 +36,10 @@ class Login extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this.usersList.off();
+  }
+
   handleChange = ev => {
     // Copy the previous user and update state
     const user = { ...this.state.currentUser };
@@ -51,20 +55,29 @@ class Login extends Component {
     const userInputEmail = this.state.currentUser.email;
     const userInputPassword = this.state.currentUser.password;
 
-    const userList = this.state.userList;
+    // const userList = this.state.userList;
     // TODO: loop through the userlist and check if correct
-    userList.forEach(user => {
+    this.state.userList.forEach(user => {
       const userDataEmail = user[1].email;
       const userDataPassword = user[1].password;
+      const userDataDisplayname = user[1].displayName;
 
+      console.log(user[1].displayName);
       if (
-        userDataEmail == userInputEmail &&
-        userDataPassword == userInputPassword
+        userDataEmail === userInputEmail &&
+        userDataPassword === userInputPassword
       ) {
-        console.log("Done");
+        console.log("Login check sucessful!");
+
+        //Copy the previous data of currentUser
+        const currentUser = { ...this.state.currentUser };
+        currentUser.displayName = userDataDisplayname; //Update the displayName
+        this.setState({ currentUser: {} }); //Reset the currentUser field
+
+        this.props.handleAuthenticate(currentUser); //Call the handle auth function
         return;
       } else {
-        console.log("Wrong password");
+        console.log("Wrong password or email");
       }
     });
   };

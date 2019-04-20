@@ -11,7 +11,7 @@ class App extends Component {
     super();
     this.state = {
       user: {},
-      displayName: null,
+      // displayName: "",
       loginStatus: false
     };
   }
@@ -51,7 +51,10 @@ class App extends Component {
           <Main user={this.state.user} signOut={this.signOut} />
         ) : (
           // <CreateNewAccount />
-          <Login />
+          <Login
+            user={this.state.user}
+            handleAuthenticate={this.handleAuthenticate}
+          />
         )}
       </div>
     );
