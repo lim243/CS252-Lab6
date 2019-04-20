@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { Route, NavLink, Switch } from "react-router-dom";
 import "./App.css";
 
 import Main from "./Main";
@@ -31,19 +32,18 @@ class App extends Component {
 
   signOut = () => {
     auth.signOut();
-    this.afterSignOut();
+
+    // reset the login status
+    this.setState({ user: {}, loginStatus: false });
   };
 
   handleAuthenticate = user => {
     this.setState({ user, loginStatus: true });
   };
 
-  afterSignOut = () => {
-    this.setState({ user: {}, loginStatus: false });
-  };
-
   render() {
     return (
+      // TODO: Add routing
       <div style={styles.website}>
         {this.signedIn() ? (
           <Main user={this.state.user} signOut={this.signOut} />

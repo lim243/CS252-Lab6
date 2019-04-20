@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Titlebar from "./Titlebar";
 import app from "../server/base";
+import Dropdown from "react-dropdown";
 // import { auth } from "../server/base";
 
 class Main extends Component {
@@ -105,6 +106,12 @@ class Main extends Component {
 
               <input type="submit" value="submit" />
             </form>
+            <Dropdown
+              options={options}
+              onChange={this._onSelect}
+              value={options[0]}
+              placeholder="Select an option"
+            />
             <div>current currency={this.state.currencyRequested}</div>
           </div>
         </div>
@@ -112,6 +119,24 @@ class Main extends Component {
     );
   }
 }
+
+const options = [
+  { value: "one", label: "One" },
+  { value: "two", label: "Two", className: "myOptionClassName" },
+  {
+    type: "group",
+    name: "group1",
+    items: [
+      { value: "three", label: "Three", className: "myOptionClassName" },
+      { value: "four", label: "Four" }
+    ]
+  },
+  {
+    type: "group",
+    name: "group2",
+    items: [{ value: "five", label: "Five" }, { value: "six", label: "Six" }]
+  }
+];
 
 const styles = {
   title: {
