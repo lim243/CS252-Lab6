@@ -53,6 +53,7 @@ class App extends Component {
             user={this.state.user}
             handleAuthenticate={this.handleAuthenticate}
           />
+          // <CreateNewAccount />
         )}
       </div>
     );

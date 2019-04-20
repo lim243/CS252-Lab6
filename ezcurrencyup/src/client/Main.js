@@ -12,7 +12,7 @@ class Main extends Component {
     this.database = app.database().ref("currencies");
 
     this.state = {
-      // inputQuery: "",
+      inputQueryBase: 1,
       currencies: [],
       // currencyRequested: "",
       sourceRequest: [],
@@ -43,8 +43,11 @@ class Main extends Component {
     this.database.off();
   }
 
-  handleChange = ev => {
-    this.setState({ inputQuery: ev.target.value });
+  handleChangeBase = ev => {
+    this.setState({ inputQueryBase: ev.target.value });
+  };
+  handleChangeTarget = ev => {
+    this.setState({ inputQueryTarget: ev.target.value });
   };
 
   handleSubmit = ev => {
@@ -52,38 +55,35 @@ class Main extends Component {
     ev.preventDefault();
 
     // Save the query
-    this.setState({ currencyRequested: this.state.inputQuery });
+    this.setState({ currencyRequested: this.state.inputQueryBase });
 
     // to clear the input box
-    this.setState({ inputQuery: "" });
+    this.setState({ inputQueryBase: "" });
 
     // this.calculateCurrecy(this.state.currencyRequested);
   };
 
-  //TODO: calculate currency
-
   handleCalculation = ev => {
-    // ev.preventDefault();
+    if (
+      !(
+        this.state.sourceRequest.length === 0 ||
+        this.state.targetRequest.length === 0
+      )
+    ) {
+      const sourceCurrency = this.state.sourceRequest.value[1];
+      const targetCurrency = this.state.targetRequest.value[1];
+      const sourceAmount = this.state.inputQueryBase;
 
-    // console.log(!this.state.sourceRequest);
-    // console.log(!this.state.targetRequest);
-    // if (!this.state.sourceRequest) {
-    //   if(!this.state.targetRequest) {
-    //   console.log("Im not empty!");
-
-    //TODO: Check if input choice is not empty
-    const source = this.state.sourceRequest.value[1];
-    const target = this.state.targetRequest.value[1];
-    this.calculateCurrecy(source, target);
-    // } else {
-    //   console.log("Please choose both options!");
-    // }
+      this.calculateCurrecy(sourceCurrency, targetCurrency, sourceAmount);
+    } else {
+      alert("Please select all choices");
+    }
   };
 
-  calculateCurrecy(source, target) {
-    console.log(source, target);
+  calculateCurrecy(sourceCurrency, targetCurrency, sourceAmount) {
+    console.log(sourceCurrency, targetCurrency);
 
-    const result = target / source;
+    const result = (targetCurrency * sourceAmount) / sourceCurrency;
     this.setState({ converted: result });
   }
 
@@ -100,14 +100,6 @@ class Main extends Component {
       placeholderRequest: target.value[0]
     });
   };
-
-  // dropOnChange = target => {
-  //   const currencyName = target.value[0];
-  //   const currencyVal = target.value[1];
-  //   this.setState({ dropdownSelection: currencyVal });
-
-  //   // this.calculateCurrecy(currencyVal);
-  // };
 
   render() {
     return (
@@ -133,25 +125,35 @@ class Main extends Component {
               );
             })}
           </ul>
-
           <div>
             {/* <Dropdown /> */}
-            <Dropdown
-              options={this.state.currencies}
-              onChange={this.dropSourceRequest}
-              value={this.state.placeholderSource}
-            />
-            <Dropdown
-              options={this.state.currencies}
-              onChange={this.dropTargetRequest}
-              value={this.state.placeholderRequest}
-            />
+            <form>
+              <label>Base currency:</label>
+              <input
+                placeholder="Amount of base currency"
+                style={styles.inputs}
+                autoFocus
+                type="number"
+                // name="email"
+                value={this.state.inputQueryBase}
+                onChange={this.handleChangeBase}
+              />
+              <Dropdown
+                options={this.state.currencies}
+                onChange={this.dropSourceRequest}
+                value={this.state.placeholderSource}
+              />
+              <Dropdown
+                options={this.state.currencies}
+                onChange={this.dropTargetRequest}
+                value={this.state.placeholderRequest}
+              />
+            </form>
           </div>
-
-          <button onClick={this.handleCalculation}>Calculate</button>
-
-          {this.state.converted}
+          <button onClick={this.handleCalculation}>Convert</button>
         </div>
+
+        <div>Converted: {this.state.converted}</div>
       </div>
     );
   }
