@@ -13,13 +13,14 @@ class Main extends Component {
     this.database = app.database().ref("currencies");
 
     this.state = {
-      inputQuery: "",
+      // inputQuery: "",
       currencies: [],
-      currencyRequested: "",
+      // currencyRequested: "",
       sourceRequest: [],
       targetRequest: [],
       placeholderSource: "Please choose a base currency",
-      placeholderRequest: "Please choose a target currency"
+      placeholderRequest: "Please choose a target currency",
+      converted: ""
     };
   }
 
@@ -57,14 +58,35 @@ class Main extends Component {
     // to clear the input box
     this.setState({ inputQuery: "" });
 
-    this.calculateCurrecy(this.state.currencyRequested);
+    // this.calculateCurrecy(this.state.currencyRequested);
   };
 
   //TODO: calculate currency
-  calculateCurrecy = (source, target) => {
-    // const currencies = this.state.currencies;
-    console.log(source, target);
+
+  handleCalculation = ev => {
+    // ev.preventDefault();
+
+    // console.log(!this.state.sourceRequest);
+    // console.log(!this.state.targetRequest);
+    // if (!this.state.sourceRequest) {
+    //   if(!this.state.targetRequest) {
+    //   console.log("Im not empty!");
+
+    //TODO: Check if input choice is not empty
+    const source = this.state.sourceRequest.value[1];
+    const target = this.state.targetRequest.value[1];
+    this.calculateCurrecy(source, target);
+    // } else {
+    //   console.log("Please choose both options!");
+    // }
   };
+
+  calculateCurrecy(source, target) {
+    console.log(source, target);
+
+    const result = target / source;
+    this.setState({ converted: result });
+  }
 
   dropSourceRequest = target => {
     this.setState({
@@ -80,13 +102,13 @@ class Main extends Component {
     });
   };
 
-  dropOnChange = target => {
-    const currencyName = target.value[0];
-    const currencyVal = target.value[1];
-    this.setState({ dropdownSelection: currencyVal });
+  // dropOnChange = target => {
+  //   const currencyName = target.value[0];
+  //   const currencyVal = target.value[1];
+  //   this.setState({ dropdownSelection: currencyVal });
 
-    // this.calculateCurrecy(currencyVal);
-  };
+  //   // this.calculateCurrecy(currencyVal);
+  // };
 
   render() {
     return (
@@ -112,25 +134,6 @@ class Main extends Component {
           </ul>
 
           <div>
-            Input form:
-            <form style={styles.form} onSubmit={this.handleSubmit}>
-              <label>
-                Input:
-                <input
-                  type="text"
-                  name="inputField"
-                  placeholder="type what currency"
-                  value={this.state.inputQuery}
-                  onChange={this.handleChange}
-                  autoFocus
-                />
-              </label>
-
-              <input type="submit" value="submit" />
-            </form>
-            {/* <div>current currency={this.state.currencyRequested}</div> */}
-          </div>
-          <div>
             {/* <Dropdown /> */}
             <Dropdown
               options={this.state.currencies}
@@ -143,29 +146,15 @@ class Main extends Component {
               value={this.state.placeholderRequest}
             />
           </div>
+
+          <button onClick={this.handleCalculation}>Calculate</button>
+
+          {this.state.converted}
         </div>
       </div>
     );
   }
 }
-
-const options = [
-  { value: "one", label: "One" },
-  { value: "two", label: "Two", className: "myOptionClassName" },
-  {
-    type: "group",
-    name: "group1",
-    items: [
-      { value: "three", label: "Three", className: "myOptionClassName" },
-      { value: "four", label: "Four" }
-    ]
-  },
-  {
-    type: "group",
-    name: "group2",
-    items: [{ value: "five", label: "Five" }, { value: "six", label: "Six" }]
-  }
-];
 
 const styles = {
   title: {
