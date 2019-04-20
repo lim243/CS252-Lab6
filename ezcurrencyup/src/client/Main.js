@@ -4,6 +4,7 @@ import app from "../server/base";
 // import Dropdown from "./Dropdown";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
+import NavigationBar from "./NavigationBar";
 // import { auth } from "../server/base";
 
 class Main extends Component {
@@ -115,6 +116,8 @@ class Main extends Component {
       <div>
         {/* Title bar */}
         <Titlebar />
+
+        {/* <NavigationBar /> */}
 
         {/* For the main input form area */}
         <div style={styles.title}>Hello, {this.props.user.displayName}</div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import app, { googleProvider, auth } from "../server/base";
 import Titlebar from "./Titlebar";
+import NavigationBar from "./NavigationBar";
 
 class Login extends Component {
   constructor() {
@@ -101,7 +102,7 @@ class Login extends Component {
         </header> */}
         <Titlebar />
 
-        <div style={styles.topnav}>
+        {/* <div style={styles.topnav}>
           <a style={styles.topBlock} href="CreateNewAccount.js">
             Create EzAccount
           </a>
@@ -114,7 +115,8 @@ class Login extends Component {
           <a style={styles.topBlock} href="https://github.com/lim243">
             About Andrew
           </a>
-        </div>
+        </div> */}
+        <NavigationBar />
 
         <div style={styles.body}>
           <main style={styles.main}>

@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 
 class Titlebar extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      stockName: ""
-    };
-  }
-
   render() {
     return (
       <div style={styles.title}>
