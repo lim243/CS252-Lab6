@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import app from "../server/base";
 import NavigationBarCreate from "./NavigationBarCreate";
+import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
 
 class CreateNewAccount extends Component {
   constructor() {
@@ -22,6 +23,7 @@ class CreateNewAccount extends Component {
     const user = this.state.user;
     console.log(user);
     this.users.push(user);
+    this.props.handleCreateAccount();
   }
 
   handleChange = ev => {

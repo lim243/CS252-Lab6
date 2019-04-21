@@ -12,7 +12,8 @@ class App extends Component {
     super();
     this.state = {
       user: {},
-      loginStatus: false
+      loginStatus: false,
+      accountCreated: false
     };
   }
 
@@ -41,9 +42,17 @@ class App extends Component {
     this.setState({ user, loginStatus: true });
   };
 
+  accountCreated = () => {
+    return this.state.accountCreated;
+  };
+
+  handeCreateNewAccount = () => {
+    this.setState({ accountCreated: true });
+    alert("Account created!");
+  };
+
   render() {
     return (
-      // TODO: Add routing
       <div style={styles.website}>
         <BrowserRouter>
           <Switch>
@@ -64,7 +73,13 @@ class App extends Component {
             <Route
               path="/create-new-account"
               render={() =>
-                this.signedIn() ? <Redirect to="/main" /> : <CreateNewAccount />
+                this.accountCreated() ? (
+                  <Redirect to="/main" />
+                ) : (
+                  <CreateNewAccount
+                    handleCreateAccount={this.handeCreateNewAccount}
+                  />
+                )
               }
             />
 
