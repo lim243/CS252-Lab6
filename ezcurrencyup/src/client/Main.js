@@ -19,7 +19,7 @@ class Main extends Component {
       targetRequest: [],
       placeholderSource: "Please choose a base currency",
       placeholderRequest: "Please choose a target currency",
-      converted: ""
+      converted: "N/A"
     };
   }
 
@@ -59,8 +59,6 @@ class Main extends Component {
 
     // to clear the input box
     this.setState({ inputQueryBase: "" });
-
-    // this.calculateCurrecy(this.state.currencyRequested);
   };
 
   handleCalculation = ev => {
@@ -112,7 +110,7 @@ class Main extends Component {
         {/* For the main input form area */}
         <div style={styles.title}>Hello, {this.props.user.displayName}</div>
         <button onClick={this.props.signOut}>Sign Out PRESSME pls</button>
-        <div>Requested currencies</div>
+        <div>Requested currencies based on 1 USD</div>
 
         <div>
           <ul>
