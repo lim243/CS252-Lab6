@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Route, NavLink, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import "./App.css";
 
 import Main from "./Main";
@@ -45,16 +45,51 @@ class App extends Component {
     return (
       // TODO: Add routing
       <div style={styles.website}>
-        {this.signedIn() ? (
-          <Main user={this.state.user} signOut={this.signOut} />
-        ) : (
-          // <CreateNewAccount />
-          <Login
-            user={this.state.user}
-            handleAuthenticate={this.handleAuthenticate}
-          />
-          // <CreateNewAccount />
-        )}
+        <BrowserRouter>
+          <Switch>
+            <Route
+              path="/login"
+              render={() =>
+                this.signedIn() ? (
+                  <Redirect to="/main" />
+                ) : (
+                  <Login
+                    user={this.state.user}
+                    handleAuthenticate={this.handleAuthenticate}
+                  />
+                )
+              }
+            />
+
+            <Route
+              path="/create-new-account"
+              render={() =>
+                this.signedIn() ? <Redirect to="/main" /> : <CreateNewAccount />
+              }
+            />
+
+            <Route
+              path="/main"
+              render={navProps =>
+                this.signedIn() ? (
+                  <Main user={this.state.user} signOut={this.signOut} />
+                ) : (
+                  <Redirect to="/login" />
+                )
+              }
+            />
+
+            <Route
+              render={() =>
+                this.signedIn() ? (
+                  <Redirect to="/main" />
+                ) : (
+                  <Redirect to="login" />
+                )
+              }
+            />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }

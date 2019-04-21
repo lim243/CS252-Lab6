@@ -5,10 +5,10 @@ class NavigationBarCreate extends Component {
     return (
       <div style={styles.title}>
         <div style={styles.topnav}>
-          <a style={styles.active} href="CreateNewAccount.js">
+          <a style={styles.active} href="create-new-account">
             Create EzAccount
           </a>
-          <a style={styles.topBlock} href="Login.js">
+          <a style={styles.topBlock} href="login">
             Login EzAccount
           </a>
           <a style={styles.topBlock} href="https://github.com/allen981013">
