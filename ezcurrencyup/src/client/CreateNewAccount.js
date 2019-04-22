@@ -12,10 +12,8 @@ class CreateNewAccount extends Component {
         displayName: "",
         password: ""
       },
-      usersList: [],
-      duplicateUserStatus: false
+      usersList: []
     };
-    this.duplicateUserStatus = false;
 
     this.usersList = app.database().ref("/users");
   }
@@ -34,31 +32,24 @@ class CreateNewAccount extends Component {
   }
 
   componentWillUnmount() {
-    // this.checkDuplicateUsers(this.state.user.email);
     this.usersList.off();
   }
-
-  //Check database for duplicates!
-  checkDuplicateUsers = email => {
-    this.state.usersList.forEach(userKey => {
-      const userEmail = userKey[1].email;
-
-      if (userEmail === email) {
-        this.setState({ duplicateUserStatus: true });
-      }
-    });
-  };
 
   //Add new user into the database
   addUser = () => {
     const user = this.state.user;
+    const arr = this.state.usersList;
 
-    if (!this.state.duplicateUserStatus) {
+    const pos = arr.map(e => {
+      console.log(e[1].email);
+      return e[1].email;
+    });
+
+    if (pos.indexOf(user.email) === -1) {
       this.usersList.push(user);
       this.props.handleCreateAccount();
     } else {
-      alert("Error! Account already exists!!");
-      this.setState({ duplicateUserStatus: false });
+      alert("User already exist! Please try another email");
     }
   };
 
@@ -67,7 +58,6 @@ class CreateNewAccount extends Component {
     const user = { ...this.state.user };
     user[ev.target.name] = ev.target.value;
     this.setState({ user });
-    this.checkDuplicateUsers(user.email);
   };
 
   handleSubmit = event => {
