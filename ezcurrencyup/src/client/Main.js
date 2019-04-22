@@ -111,7 +111,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Main">
         {/* Title bar */}
         <Titlebar />
 
@@ -119,10 +119,13 @@ class Main extends Component {
 
         {/* For the main input form area */}
         <div style={styles.title}>Hello, {this.props.user.displayName}</div>
-        <button onClick={this.props.signOut}>Sign Out PRESSME pls</button>
-        <div>Requested currencies based on 1 USD</div>
+        <button style={styles.buttons} onClick={this.props.signOut}>
+          Sign Out PRESSME pls
+        </button>
 
         <div>
+          <div>Requested currencies based on 1 USD</div>
+
           <ul>
             {this.state.currencies.map(val => {
               // console.log(val[1]);
@@ -133,6 +136,8 @@ class Main extends Component {
               );
             })}
           </ul>
+        </div>
+        <div>
           <div>
             {/* <Dropdown /> */}
             <form>
@@ -158,7 +163,9 @@ class Main extends Component {
               />
             </form>
           </div>
-          <button onClick={this.handleCalculation}>Convert</button>
+          <button style={styles.buttons} onClick={this.handleCalculation}>
+            Convert
+          </button>
         </div>
 
         <div>Converted: {this.state.converted}</div>
@@ -189,6 +196,15 @@ const styles = {
     lineHeight: "20px",
     border: "1px solid #d1d5da",
     margin: "0 auto"
+  },
+
+  buttons: {
+    backgroundColor: "#9932CC",
+    border: "none",
+    color: "white",
+    padding: "15px 32px",
+    fontSize: "16px",
+    margin: "0px 10px"
   }
 };
 
