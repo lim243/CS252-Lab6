@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import app from "../server/base";
 import NavigationBarCreate from "./NavigationBarCreate";
-import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
 
 class CreateNewAccount extends Component {
   constructor() {
@@ -12,25 +11,63 @@ class CreateNewAccount extends Component {
         email: "",
         displayName: "",
         password: ""
-      }
+      },
+      usersList: [],
+      duplicateUserStatus: false
     };
+    this.duplicateUserStatus = false;
 
-    this.users = app.database().ref("users");
+    this.usersList = app.database().ref("/users");
   }
 
-  // TODO: need to check if the user is already in the database or not
-  addUser() {
+  componentDidMount() {
+    //query to retrieve data from database
+    this.usersList.on("value", snap => {
+      //Parse incoming data from database
+      const userObj = snap.val();
+      //Convert incoming object to array
+      const userList = Object.keys(userObj).map(function(key) {
+        return [key, userObj[key]];
+      });
+      this.setState({ usersList: userList });
+    });
+  }
+
+  componentWillUnmount() {
+    // this.checkDuplicateUsers(this.state.user.email);
+    this.usersList.off();
+  }
+
+  //Check database for duplicates!
+  checkDuplicateUsers = email => {
+    this.state.usersList.forEach(userKey => {
+      const userEmail = userKey[1].email;
+
+      if (userEmail === email) {
+        this.setState({ duplicateUserStatus: true });
+      }
+    });
+  };
+
+  //Add new user into the database
+  addUser = () => {
     const user = this.state.user;
-    console.log(user);
-    this.users.push(user);
-    this.props.handleCreateAccount();
-  }
+
+    if (!this.state.duplicateUserStatus) {
+      this.usersList.push(user);
+      this.props.handleCreateAccount();
+    } else {
+      alert("Error! Account already exists!!");
+      this.setState({ duplicateUserStatus: false });
+    }
+  };
 
   handleChange = ev => {
     //Copy the previous user and update state
     const user = { ...this.state.user };
     user[ev.target.name] = ev.target.value;
     this.setState({ user });
+    this.checkDuplicateUsers(user.email);
   };
 
   handleSubmit = event => {
@@ -52,20 +89,6 @@ class CreateNewAccount extends Component {
           </span>
         </header>
 
-        {/* <div style={styles.topnav}>
-          <a style={styles.active} href="CreateNewAccount.js">
-            Create EzAccount
-          </a>
-          <a style={styles.topBlock} href="Login.js">
-            Login EzAccount
-          </a>
-          <a style={styles.topBlock} href="https://github.com/allen981013">
-            About Allen
-          </a>
-          <a style={styles.topBlock} href="https://github.com/lim243">
-            About Andrew
-          </a>
-        </div> */}
         <NavigationBarCreate />
 
         <div style={styles.body}>
@@ -109,6 +132,7 @@ class CreateNewAccount extends Component {
                   onChange={this.handleChange}
                 />
               </div>
+              {/* {this.checkDuplicateUsers()} */}
 
               <input type="submit" value="Create" style={styles.buttons} />
             </form>

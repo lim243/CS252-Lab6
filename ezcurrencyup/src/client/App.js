@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   signedIn = () => {
-    console.log(this.state.loginStatus);
+    // console.log(this.state.loginStatus);
     return this.state.loginStatus;
   };
 
