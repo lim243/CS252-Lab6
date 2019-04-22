@@ -36,6 +36,7 @@ class Main extends Component {
 
       this.setState({ currencies: currencyList });
     });
+    // this.getExchangeRates();
   }
 
   componentWillUnmount() {
@@ -98,6 +99,15 @@ class Main extends Component {
       placeholderRequest: target.value[0]
     });
   };
+
+  // getExchangeRates = () => {
+  //   fetch(
+  //     `http://data.fixer.io/api/latest?access_key=8c72861f34a2e9f48870f14c24015da3`
+  //   ).then(response => {
+  //     response.json();
+  //     console.log(response);
+  //   });
+  // };
 
   render() {
     return (
