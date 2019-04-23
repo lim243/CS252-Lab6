@@ -155,7 +155,9 @@ class Login extends Component {
 const styles = {
   signIn: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    background: "url('BackGround.png')",
+    height:"100vh"
   },
 
   body: {
@@ -165,28 +167,29 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     backgroundColor: "black",
-    background: "url('BackGround.png')"
+    background: "url('BackGround.png')",
+    height:"100%"
   },
 
-  // header: {
-  //   textIndent: "1rem",
-  //   color: "white",
-  //   fontWeight: "450",
-  //   lineHeight: "0%",
-  //   fontSize: "3rem",
-  //   backgroundColor: "black",
-  //   background: "url('HeaderBG.png')",
-  //   fontFamily: "Nanum Pen Script"
-  // },
+  header: {
+    textIndent: "1rem",
+    color: "white",
+    fontWeight: "450",
+    lineHeight: "0%",
+    fontSize: "3rem",
+    backgroundColor: "black",
+    background: "url('HeaderBG.png')",
+    fontFamily: "Nanum Pen Script"
+   },
 
-  // subHeader: {
-  //   textIndent: "15rem",
-  //   color: "white",
-  //   fontWeight: 200,
-  //   lineHeight: "0",
-  //   fontSize: "1.5rem",
-  //   backgroundColor: "black"
-  // },
+  subHeader: {
+    textIndent: "15rem",
+    color: "white",
+    fontWeight: 200,
+    lineHeight: "0",
+    fontSize: "1.5rem",
+    backgroundColor: "black"
+  },
 
   topnav: {
     width: "100%",
@@ -195,7 +198,7 @@ const styles = {
   },
 
   topBlock: {
-    width: "22%",
+    width: "22vw",
     float: "left",
     color: "white",
     textAlign: "center",
@@ -207,7 +210,7 @@ const styles = {
   },
 
   active: {
-    width: "22%",
+    width: "22vw",
     float: "left",
     color: "white",
     textAlign: "center",
@@ -226,7 +229,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     margin: "0 auto",
-    paddingBottom: "3rem"
+    paddingBottom: "3rem",
   },
 
   subTitle: {

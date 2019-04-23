@@ -112,7 +112,7 @@ class App extends Component {
 
 const styles = {
   website: {
-    height: "100%"
+    height: "VH"
   }
 };
 

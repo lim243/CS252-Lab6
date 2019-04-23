@@ -136,7 +136,9 @@ class CreateNewAccount extends Component {
 const styles = {
   signIn: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    background: "url('BackGround.png')",
+    height:"100vh"
   },
 
   body: {
