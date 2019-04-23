@@ -9,12 +9,14 @@ EzCurrencyUp
 
 Description:
 This is a online currency conventer.
-Every person has an account including name, userid, password, and city.
+Every person has an account including name, userid, password.
 People can easily do the conversion as their wish.
 
 Tech:
 HTML 5
 Firebase
-react-dropdown : `https://www.npmjs.com/package/react-dropdown`
+react-dropdown : https://www.npmjs.com/package/react-dropdown
 React - JSX
 JavaScript
+
+URL: https://ezcurrencyup-546ab.firebaseapp.com
