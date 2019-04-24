@@ -112,14 +112,14 @@ class Main extends Component {
         {/* <NavigationBar /> */}
 
         {/* For the main input form area */}
-        <div className="body">
-          <div className="title">Hello, {this.props.user.displayName}</div>
+        <div className="body" style={styles.body}>
+          <div className="title" style={styles.title}>Hello, {this.props.user.displayName}</div>
           {/* <button className="buttons" onClick={this.props.signOut}>
             Sign Out PRESSME pls
           </button> */}
 
           <div>
-            <div>Requested currencies based on 1 USD</div>
+            <div style={styles.subTitle}>TODAY'S RATE:    1 USD =</div>
 
             <ul>
               {this.state.currencies.map(val => {
@@ -174,13 +174,34 @@ class Main extends Component {
 
 const styles = {
   title: {
-    color: "cornflowerblue",
+    position: "absolute",
+    left: "auto",
+    top: "45px",
+    color: "white",
     fontWeight: 400,
     textTransform: "uppercase",
     lineHeight: "80px",
-    fontSize: "2rem"
+    fontSize: "3.5rem",
+    lineHeight:"0",
   },
 
+  subTitle:{
+    position: "absolute",
+    left: "40px",
+    color: "white",
+    top: "110px",
+    backgroundColor: "#9932CC",
+    width: "300px"
+  },
+
+  body:{
+    position: "relative",
+    flex: 1,
+    textAlign: "left",
+    background: "url('BackGround.png')",
+    height:"100vh"
+  },
+  
   form: {
     fontFamily: "Gentium Book Basic",
     // -webkit-box-sizing: border-box;

@@ -6,7 +6,7 @@ class NavigationBarMain extends Component {
       <div style={styles.title}>
         <div style={styles.topnav}>
           <button style={styles.signOut} onClick={this.props.signOut}>
-            Sign Out
+            Log Out
           </button>
           <a style={styles.topBlock} href="https://github.com/allen981013">
             About Andrew
@@ -22,6 +22,9 @@ class NavigationBarMain extends Component {
 
 const styles = {
   title: {
+    textIndent: "1rem",
+    color: "white",
+    fontWeight: "450",
     display: "flex",
     flexDirection: "column"
   },
@@ -32,26 +35,13 @@ const styles = {
   },
 
   topBlock: {
-    width: "22%",
+    width: "30vw",
     float: "right",
     color: "white",
     textAlign: "center",
     padding: "14px 16px",
     textDecoration: "none",
     fontSize: "17px",
-    fontFamily: "Indie Flower",
-    fontWeight: 600
-  },
-
-  active: {
-    width: "22%",
-    float: "right",
-    color: "white",
-    textAlign: "center",
-    padding: "14px 16px",
-    textDecoration: "none",
-    fontSize: "17px",
-    backgroundColor: "#9932CC",
     fontFamily: "Indie Flower",
     fontWeight: 600
   },
@@ -59,7 +49,7 @@ const styles = {
   signOut: {
     backgroundColor: "#696969",
     border: "none",
-    width: "22%",
+    width: "30vw",
     float: "right",
     color: "white",
     textAlign: "center",
