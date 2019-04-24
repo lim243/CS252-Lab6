@@ -10,7 +10,8 @@ class CreateNewAccount extends Component {
       user: {
         email: "",
         displayName: "",
-        password: ""
+        password: "",
+        defaultCurrency:""
       },
       usersList: []
     };
@@ -110,6 +111,18 @@ class CreateNewAccount extends Component {
                   onChange={this.handleChange}
                 />
               </div>
+
+              <div>
+                <label style={styles.labels}>Currecny:</label>
+                <input
+                  style={styles.inputs}
+                  name="defaultCurrency"
+                  required
+                  value={this.state.userName}
+                  onChange={this.handleChange}
+                />
+              </div>
+
 
               <div>
                 <label style={styles.labels}>Password:</label>

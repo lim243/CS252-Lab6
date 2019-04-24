@@ -165,7 +165,7 @@ class Main extends Component {
             </button>
           </div>
 
-          <div>Converted: {this.state.converted}</div>
+          <div style={styles.result}>Converted: {this.state.converted}</div>
         </div>
       </div>
     );
@@ -244,6 +244,14 @@ const styles = {
     padding: "15px 32px",
     fontSize: "16px",
     margin: "0px 10px"
+  },
+
+  result:{
+    position: "absolute",
+    color: "white",
+    top: "110px",
+    fontSize:"1rem",
+    left:"400px"
   }
 };
 
