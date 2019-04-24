@@ -17,8 +17,8 @@ class Main extends Component {
       inputQueryBase: 1,
       currencies: [],
       // currencyRequested: "",
-      sourceRequest: [],
-      targetRequest: [],
+      sourceRequest: {},
+      targetRequest: {},
       placeholderSource: "Please choose a base currency",
       placeholderRequest: "Please choose a target currency",
       converted: "N/A"
@@ -30,6 +30,7 @@ class Main extends Component {
     this.database.on("value", snap => {
       //Parse incoming data from database
       const currencyObj = snap.val();
+      this.setState({ currencyObj });
 
       //Convert incoming object to array
       const currencyList = Object.keys(currencyObj).map(function(key) {
@@ -65,6 +66,17 @@ class Main extends Component {
   };
 
   handleCalculation = ev => {
+    // if (this.state.placeholderSource === "Please choose a base currency") {
+    //   // console.log(this.state.placeholderSource);
+    //   // var defaultCurrency = this.props.defaultCurrency;
+    //   // const defaultCurrencyVal = this.state.currencyObj;
+    //   // console.log(defaultCurrency);
+    //   // console.log(defaultCurrencyVal);
+    //   // this.setState({
+    //   //   sourceRequest: { value: [defaultCurrency, defaultCurrencyVal] }
+    //   // });
+    // }
+
     if (
       !(
         this.state.sourceRequest.length === 0 ||
@@ -89,10 +101,20 @@ class Main extends Component {
   }
 
   dropSourceRequest = target => {
+    console.log(target);
+    // if (typeof target === "object") {
     this.setState({
       sourceRequest: target,
       placeholderSource: target.value[0]
     });
+    // } else {
+    //   const defaultCurrencyVal = this.state.currenciesObj.defaultCurrency;
+    //   this.setState({
+    //     sourceRequest: {
+    //       label: [this.props.defaultCurrency, defaultCurrencyVal]
+    //     }
+    //   });
+    // }
   };
 
   dropTargetRequest = target => {
@@ -156,7 +178,6 @@ class Main extends Component {
                 />
               </form>
             </div>
-            {/* <button style={styles.buttons} onClick={this.handleCalculation}> */}
             <button
               className="buttons"
               onClick={this.handleCalculation}
