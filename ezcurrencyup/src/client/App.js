@@ -13,7 +13,8 @@ class App extends Component {
     this.state = {
       user: {},
       loginStatus: false,
-      accountCreated: false
+      accountCreated: false,
+      defaultCurrency: "USD"
     };
   }
 
@@ -35,7 +36,7 @@ class App extends Component {
     auth.signOut();
 
     // reset the login status
-    this.setState({ user: {}, loginStatus: false });
+    this.setState({ user: {}, loginStatus: false, defaultCurrency: "USD" });
   };
 
   handleAuthenticate = user => {
@@ -49,6 +50,10 @@ class App extends Component {
   handeCreateNewAccount = () => {
     this.setState({ accountCreated: true });
     alert("Account created!");
+  };
+
+  updateDefaultCurrency = currency => {
+    this.setState({ defaultCurrency: currency });
   };
 
   render() {
@@ -65,6 +70,7 @@ class App extends Component {
                   <Login
                     user={this.state.user}
                     handleAuthenticate={this.handleAuthenticate}
+                    updateDefaultCurrency={this.updateDefaultCurrency}
                   />
                 )
               }
@@ -87,7 +93,11 @@ class App extends Component {
               path="/main"
               render={navProps =>
                 this.signedIn() ? (
-                  <Main user={this.state.user} signOut={this.signOut} />
+                  <Main
+                    user={this.state.user}
+                    signOut={this.signOut}
+                    defaultCurrency={this.state.defaultCurrency}
+                  />
                 ) : (
                   <Redirect to="/login" />
                 )

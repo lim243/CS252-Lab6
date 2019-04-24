@@ -109,14 +109,11 @@ class Main extends Component {
         <Titlebar />
         <NavigationBarMain signOut={this.props.signOut} />
 
-        {/* <NavigationBar /> */}
-
         {/* For the main input form area */}
         <div className="body" style={styles.body}>
-          <div className="title" style={styles.title}>Hello, {this.props.user.displayName}</div>
-          {/* <button className="buttons" onClick={this.props.signOut}>
-            Sign Out PRESSME pls
-          </button> */}
+          <div className="title" style={styles.title}>
+            Hello, {this.props.user.displayName}
+          </div>
 
           <div>
             <div style={styles.subTitle}>TODAY'S RATE: 1 USD =</div>
@@ -150,7 +147,7 @@ class Main extends Component {
                 <Dropdown
                   options={this.state.currencies}
                   onChange={this.dropSourceRequest}
-                  value={this.state.placeholderSource}
+                  value={this.props.defaultCurrency}
                 />
                 <Dropdown
                   options={this.state.currencies}
@@ -160,7 +157,11 @@ class Main extends Component {
               </form>
             </div>
             {/* <button style={styles.buttons} onClick={this.handleCalculation}> */}
-            <button className="buttons" onClick={this.handleCalculation}  style={styles.buttons}>
+            <button
+              className="buttons"
+              onClick={this.handleCalculation}
+              style={styles.buttons}
+            >
               Convert
             </button>
           </div>
@@ -182,10 +183,10 @@ const styles = {
     textTransform: "uppercase",
     lineHeight: "80px",
     fontSize: "3.5rem",
-    lineHeight:"0",
+    lineHeight: "0"
   },
 
-  subTitle:{
+  subTitle: {
     position: "absolute",
     left: "40px",
     color: "white",
@@ -197,30 +198,30 @@ const styles = {
     padding: "15px 32px"
   },
 
-  body:{
+  body: {
     position: "relative",
     flex: 1,
     textAlign: "left",
     background: "url('BackGround.png')",
-    height:"100vh"
+    height: "100vh"
   },
 
-  tables:{
+  tables: {
     position: "absolute",
-    color:"white",
+    color: "white",
     left: "40px",
     top: "130px",
-    fontSize:"1rem"
+    fontSize: "1rem"
   },
 
-  currencySelect:{
+  currencySelect: {
     position: "absolute",
-    color:"white",
+    color: "white",
     left: "40px",
     top: "400px",
-    fontSize:"1rem"
+    fontSize: "1rem"
   },
-  
+
   form: {
     fontFamily: "Gentium Book Basic",
     // -webkit-box-sizing: border-box;
@@ -246,12 +247,12 @@ const styles = {
     margin: "0px 10px"
   },
 
-  result:{
+  result: {
     position: "absolute",
     color: "white",
     top: "110px",
-    fontSize:"1rem",
-    left:"400px"
+    fontSize: "1rem",
+    left: "400px"
   }
 };
 

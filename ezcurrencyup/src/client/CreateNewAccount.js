@@ -11,7 +11,7 @@ class CreateNewAccount extends Component {
         email: "",
         displayName: "",
         password: "",
-        defaultCurrency:""
+        defaultCurrency: ""
       },
       usersList: []
     };
@@ -118,11 +118,10 @@ class CreateNewAccount extends Component {
                   style={styles.inputs}
                   name="defaultCurrency"
                   required
-                  value={this.state.userName}
+                  value={this.state.defaultCurrency}
                   onChange={this.handleChange}
                 />
               </div>
-
 
               <div>
                 <label style={styles.labels}>Password:</label>
@@ -151,7 +150,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     background: "url('BackGround.png')",
-    height:"100vh"
+    height: "100vh"
   },
 
   body: {

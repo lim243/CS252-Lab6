@@ -11,7 +11,8 @@ class Login extends Component {
       currentUser: {
         email: "",
         displayName: "",
-        password: ""
+        password: "",
+        defaultCurrency: ""
       },
       userList: []
     };
@@ -63,6 +64,8 @@ class Login extends Component {
       const userDataEmail = user[1].email;
       const userDataPassword = user[1].password;
       const userDataDisplayname = user[1].displayName;
+      const userDataDefaultCurrency = user[1].defaultCurrency;
+      console.log(userDataDefaultCurrency);
 
       console.log(user[1].displayName);
       if (
@@ -74,9 +77,18 @@ class Login extends Component {
         //Copy the previous data of currentUser
         const currentUser = { ...this.state.currentUser };
         currentUser.displayName = userDataDisplayname; //Update the displayName
-        this.setState({ currentUser: {} }); //Reset the currentUser field
+        currentUser.defaultCurrency = userDataDefaultCurrency;
 
+        this.props.updateDefaultCurrency(currentUser.defaultCurrency);
         this.props.handleAuthenticate(currentUser); //Call the handle auth function
+        this.setState({
+          currentUser: {
+            email: "",
+            displayName: "",
+            password: "",
+            defaultCurrency: "USD"
+          }
+        }); //Reset the currentUser field
         flag = true;
         return;
       }
@@ -90,16 +102,6 @@ class Login extends Component {
   render() {
     return (
       <div style={styles.signIn}>
-        {/* <header style={styles.header}>
-          <link
-            href="https://fonts.googleapis.com/css?family=Indie+Flower"
-            rel="stylesheet"
-          />
-          <span>
-            <p>Ez Currecny Up</p>
-            <p style={styles.subHeader}>Make Life Easier.</p>
-          </span>
-        </header> */}
         <Titlebar />
 
         <NavigationBarLogin />
@@ -157,7 +159,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     background: "url('BackGround.png')",
-    height:"100vh"
+    height: "100vh"
   },
 
   body: {
@@ -168,7 +170,7 @@ const styles = {
     justifyContent: "center",
     backgroundColor: "black",
     background: "url('BackGround.png')",
-    height:"100%"
+    height: "100%"
   },
 
   header: {
@@ -180,7 +182,7 @@ const styles = {
     backgroundColor: "black",
     background: "url('HeaderBG.png')",
     fontFamily: "Nanum Pen Script"
-   },
+  },
 
   subHeader: {
     textIndent: "15rem",
@@ -229,7 +231,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     margin: "0 auto",
-    paddingBottom: "3rem",
+    paddingBottom: "3rem"
   },
 
   subTitle: {
