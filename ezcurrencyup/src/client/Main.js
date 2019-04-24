@@ -119,9 +119,9 @@ class Main extends Component {
           </button> */}
 
           <div>
-            <div style={styles.subTitle}>TODAY'S RATE:    1 USD =</div>
+            <div style={styles.subTitle}>TODAY'S RATE: 1 USD =</div>
 
-            <ul>
+            <ul style={styles.tables}>
               {this.state.currencies.map(val => {
                 // console.log(val[1]);
                 return (
@@ -132,7 +132,7 @@ class Main extends Component {
               })}
             </ul>
           </div>
-          <div>
+          <div style={styles.currencySelect}>
             <div>
               {/* <Dropdown /> */}
               <form>
@@ -160,7 +160,7 @@ class Main extends Component {
               </form>
             </div>
             {/* <button style={styles.buttons} onClick={this.handleCalculation}> */}
-            <button className="buttons" onClick={this.handleCalculation}>
+            <button className="buttons" onClick={this.handleCalculation}  style={styles.buttons}>
               Convert
             </button>
           </div>
@@ -190,8 +190,11 @@ const styles = {
     left: "40px",
     color: "white",
     top: "110px",
-    backgroundColor: "#9932CC",
-    width: "300px"
+    width: "300px",
+    fontSize: "1rem",
+    margin: "0px 10px",
+    border: "none",
+    padding: "15px 32px"
   },
 
   body:{
@@ -200,6 +203,22 @@ const styles = {
     textAlign: "left",
     background: "url('BackGround.png')",
     height:"100vh"
+  },
+
+  tables:{
+    position: "absolute",
+    color:"white",
+    left: "40px",
+    top: "130px",
+    fontSize:"1rem"
+  },
+
+  currencySelect:{
+    position: "absolute",
+    color:"white",
+    left: "40px",
+    top: "400px",
+    fontSize:"1rem"
   },
   
   form: {
@@ -218,6 +237,7 @@ const styles = {
   },
 
   buttons: {
+    position: "absolute",
     backgroundColor: "#9932CC",
     border: "none",
     color: "white",
