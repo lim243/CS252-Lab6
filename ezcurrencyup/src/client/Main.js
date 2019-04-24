@@ -4,6 +4,8 @@ import "react-dropdown/style.css";
 
 import Titlebar from "./Titlebar";
 import app from "../server/base";
+import "./Main.css";
+import NavigationBarMain from "./NavigationBarMain";
 
 class Main extends Component {
   constructor() {
@@ -100,75 +102,71 @@ class Main extends Component {
     });
   };
 
-  // getExchangeRates = () => {
-  //   fetch(
-  //     `http://data.fixer.io/api/latest?access_key=8c72861f34a2e9f48870f14c24015da3`
-  //   ).then(response => {
-  //     response.json();
-  //     console.log(response);
-  //   });
-  // };
-
   render() {
     return (
       <div className="Main">
         {/* Title bar */}
         <Titlebar />
+        <NavigationBarMain signOut={this.props.signOut} />
 
         {/* <NavigationBar /> */}
 
         {/* For the main input form area */}
-        <div style={styles.title}>Hello, {this.props.user.displayName}</div>
-        <button style={styles.buttons} onClick={this.props.signOut}>
-          Sign Out PRESSME pls
-        </button>
+        <div className="body">
+          <div className="title">Hello, {this.props.user.displayName}</div>
+          {/* <button className="buttons" onClick={this.props.signOut}>
+            Sign Out PRESSME pls
+          </button> */}
 
-        <div>
-          <div>Requested currencies based on 1 USD</div>
-
-          <ul>
-            {this.state.currencies.map(val => {
-              // console.log(val[1]);
-              return (
-                <li key={val[0]}>
-                  {val[0]}: {val[1]}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <div>
           <div>
-            {/* <Dropdown /> */}
-            <form>
-              <label>Base currency:</label>
-              <input
-                placeholder="Amount of base currency"
-                style={styles.inputs}
-                autoFocus
-                type="number"
-                // name="email"
-                value={this.state.inputQueryBase}
-                onChange={this.handleChangeBase}
-              />
-              <Dropdown
-                options={this.state.currencies}
-                onChange={this.dropSourceRequest}
-                value={this.state.placeholderSource}
-              />
-              <Dropdown
-                options={this.state.currencies}
-                onChange={this.dropTargetRequest}
-                value={this.state.placeholderRequest}
-              />
-            </form>
-          </div>
-          <button style={styles.buttons} onClick={this.handleCalculation}>
-            Convert
-          </button>
-        </div>
+            <div>Requested currencies based on 1 USD</div>
 
-        <div>Converted: {this.state.converted}</div>
+            <ul>
+              {this.state.currencies.map(val => {
+                // console.log(val[1]);
+                return (
+                  <li key={val[0]}>
+                    {val[0]}: {val[1]}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div>
+            <div>
+              {/* <Dropdown /> */}
+              <form>
+                <label>Base currency:</label>
+                <input
+                  placeholder="Amount of base currency"
+                  // style={styles.inputs}
+                  className="inputs"
+                  autoFocus
+                  type="number"
+                  // name="email"
+                  value={this.state.inputQueryBase}
+                  onChange={this.handleChangeBase}
+                />
+                <Dropdown
+                  options={this.state.currencies}
+                  onChange={this.dropSourceRequest}
+                  value={this.state.placeholderSource}
+                />
+                <Dropdown
+                  options={this.state.currencies}
+                  onChange={this.dropTargetRequest}
+                  value={this.state.placeholderRequest}
+                />
+              </form>
+            </div>
+            {/* <button style={styles.buttons} onClick={this.handleCalculation}> */}
+            <button className="buttons" onClick={this.handleCalculation}>
+              Convert
+            </button>
+          </div>
+
+          <div>Converted: {this.state.converted}</div>
+        </div>
       </div>
     );
   }
