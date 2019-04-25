@@ -50,7 +50,15 @@ class Main extends Component {
   }
 
   handleChangeBase = ev => {
-    this.setState({ inputQueryBase: ev.target.value });
+    var num = ev.target.value;
+
+    console.log("Before" + { num });
+    if (num < 0) {
+      num = 1;
+    }
+    console.log(num);
+
+    this.setState({ inputQueryBase: num });
   };
   handleChangeTarget = ev => {
     this.setState({ inputQueryTarget: ev.target.value });
@@ -141,7 +149,7 @@ class Main extends Component {
           <div style={styles.currencySelect}>
             <div>
               {/* <Dropdown /> */}
-              <form>
+              <form onSubmit={this.handleSubmit}>
                 <label style={styles.labels}>Base currency:</label>
                 <input
                   style={styles.inputs}
