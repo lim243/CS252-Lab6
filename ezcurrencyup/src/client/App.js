@@ -97,6 +97,7 @@ class App extends Component {
                     user={this.state.user}
                     signOut={this.signOut}
                     defaultCurrency={this.state.defaultCurrency}
+                    updateDefaultCurrency={this.updateDefaultCurrency}
                   />
                 ) : (
                   <Redirect to="/login" />

@@ -39,6 +39,8 @@ class Main extends Component {
 
       this.setState({ currencies: currencyList });
     });
+
+    // console.log(this.props.defaultCurrency);
     // this.getExchangeRates();
   }
 
@@ -66,17 +68,6 @@ class Main extends Component {
   };
 
   handleCalculation = ev => {
-    // if (this.state.placeholderSource === "Please choose a base currency") {
-    //   // console.log(this.state.placeholderSource);
-    //   // var defaultCurrency = this.props.defaultCurrency;
-    //   // const defaultCurrencyVal = this.state.currencyObj;
-    //   // console.log(defaultCurrency);
-    //   // console.log(defaultCurrencyVal);
-    //   // this.setState({
-    //   //   sourceRequest: { value: [defaultCurrency, defaultCurrencyVal] }
-    //   // });
-    // }
-
     if (
       !(
         this.state.sourceRequest.length === 0 ||
@@ -101,20 +92,12 @@ class Main extends Component {
   }
 
   dropSourceRequest = target => {
-    console.log(target);
-    // if (typeof target === "object") {
+    // console.log(target);
     this.setState({
       sourceRequest: target,
       placeholderSource: target.value[0]
     });
-    // } else {
-    //   const defaultCurrencyVal = this.state.currenciesObj.defaultCurrency;
-    //   this.setState({
-    //     sourceRequest: {
-    //       label: [this.props.defaultCurrency, defaultCurrencyVal]
-    //     }
-    //   });
-    // }
+    this.props.updateDefaultCurrency(target.value[0]);
   };
 
   dropTargetRequest = target => {
@@ -127,7 +110,10 @@ class Main extends Component {
   render() {
     return (
       <div className="Main">
-      <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet"></link>
+        <link
+          href="https://fonts.googleapis.com/css?family=Amatic+SC"
+          rel="stylesheet"
+        />
         {/* Title bar */}
         <Titlebar />
         <NavigationBarMain signOut={this.props.signOut} />
@@ -157,7 +143,8 @@ class Main extends Component {
               {/* <Dropdown /> */}
               <form>
                 <label style={styles.labels}>Base currency:</label>
-                <input style={styles.inputs}
+                <input
+                  style={styles.inputs}
                   placeholder="Amount of base currency"
                   // style={styles.inputs}
                   className="inputs"
@@ -206,7 +193,7 @@ const styles = {
     lineHeight: "80px",
     fontSize: "3.5rem",
     lineHeight: "0",
-    fontFamily:"Amatic SC"
+    fontFamily: "Amatic SC"
   },
 
   subTitle: {
@@ -219,7 +206,7 @@ const styles = {
     margin: "0px 10px",
     border: "none",
     padding: "15px 32px",
-    fontFamily:"Amatic SC",
+    fontFamily: "Amatic SC",
     fontWeight: "450"
   },
 
@@ -232,7 +219,7 @@ const styles = {
   },
 
   tables: {
-    fontFamily:"Amatic SC",
+    fontFamily: "Amatic SC",
     fontWeight: "450",
     position: "absolute",
     color: "white",
@@ -252,7 +239,7 @@ const styles = {
   },
 
   currencySelect: {
-    fontFamily:"Amatic SC",
+    fontFamily: "Amatic SC",
     fontWeight: "450",
     position: "absolute",
     color: "white",
@@ -276,7 +263,7 @@ const styles = {
     margin: "0 auto"
   },
 
-  labels:{
+  labels: {
     lineHeight: "3"
   },
 
@@ -293,13 +280,13 @@ const styles = {
   },
 
   result: {
-    fontFamily:"Amatic SC",
+    fontFamily: "Amatic SC",
     position: "absolute",
     color: "white",
     top: "130px",
     fontSize: "1rem",
     left: "500px",
-    fontSize:"2rem"
+    fontSize: "2rem"
   }
 };
 
