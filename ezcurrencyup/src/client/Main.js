@@ -127,6 +127,7 @@ class Main extends Component {
   render() {
     return (
       <div className="Main">
+      <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet"></link>
         {/* Title bar */}
         <Titlebar />
         <NavigationBarMain signOut={this.props.signOut} />
@@ -155,8 +156,8 @@ class Main extends Component {
             <div>
               {/* <Dropdown /> */}
               <form>
-                <label>Base currency:</label>
-                <input
+                <label style={styles.labels}>Base currency:</label>
+                <input style={styles.inputs}
                   placeholder="Amount of base currency"
                   // style={styles.inputs}
                   className="inputs"
@@ -204,19 +205,22 @@ const styles = {
     textTransform: "uppercase",
     lineHeight: "80px",
     fontSize: "3.5rem",
-    lineHeight: "0"
+    lineHeight: "0",
+    fontFamily:"Amatic SC"
   },
 
   subTitle: {
     position: "absolute",
     left: "40px",
     color: "white",
-    top: "110px",
+    top: "100px",
     width: "300px",
-    fontSize: "1rem",
+    fontSize: "2rem",
     margin: "0px 10px",
     border: "none",
-    padding: "15px 32px"
+    padding: "15px 32px",
+    fontFamily:"Amatic SC",
+    fontWeight: "450"
   },
 
   body: {
@@ -228,19 +232,33 @@ const styles = {
   },
 
   tables: {
+    fontFamily:"Amatic SC",
+    fontWeight: "450",
     position: "absolute",
     color: "white",
     left: "40px",
     top: "130px",
-    fontSize: "1rem"
+    fontSize: "2rem"
+  },
+
+  inputs: {
+    borderRadius: "10px",
+    fontSize: "1rem",
+    padding: "10px 10px",
+    borderColor: "white",
+    position: "absolute",
+    top: "27px",
+    left: "135px"
   },
 
   currencySelect: {
+    fontFamily:"Amatic SC",
+    fontWeight: "450",
     position: "absolute",
     color: "white",
-    left: "40px",
-    top: "400px",
-    fontSize: "1rem"
+    left: "500px",
+    top: "150px",
+    fontSize: "2rem"
   },
 
   form: {
@@ -258,9 +276,15 @@ const styles = {
     margin: "0 auto"
   },
 
+  labels:{
+    lineHeight: "3"
+  },
+
   buttons: {
     position: "absolute",
     backgroundColor: "#9932CC",
+    top: "230px",
+    left: "-10px",
     border: "none",
     color: "white",
     padding: "15px 32px",
@@ -269,11 +293,13 @@ const styles = {
   },
 
   result: {
+    fontFamily:"Amatic SC",
     position: "absolute",
     color: "white",
-    top: "110px",
+    top: "130px",
     fontSize: "1rem",
-    left: "400px"
+    left: "500px",
+    fontSize:"2rem"
   }
 };
 
